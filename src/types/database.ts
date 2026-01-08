@@ -22,6 +22,9 @@ export type Order = {
   notes: string | null
   created_by: string | null
   created_at: string
+  total_amount: number
+  amount_paid: number
+  due_date: string | null
 }
 
 export type OrderItem = {
@@ -30,4 +33,6 @@ export type OrderItem = {
   product_name: string
   size: string
   quantity: number
+  unit_price: number
+  quantity_delivered: number
 }

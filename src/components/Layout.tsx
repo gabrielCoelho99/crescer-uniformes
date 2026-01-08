@@ -17,10 +17,16 @@ const navigation = [
   { name: 'Clientes', href: '/customers', icon: UsersIcon },
   { name: 'Pedidos', href: '/orders', icon: ShoppingBagIcon },
 ]
+// Extra icon for Admin
+import { ChartBarIcon } from '@heroicons/react/24/outline'
 
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { signOut, profile } = useAuth()
+  const { signOut, profile, isAdmin } = useAuth()
+  
+  const navItems = isAdmin 
+    ? [...navigation, { name: 'Admin', href: '/admin', icon: ChartBarIcon }]
+    : navigation
 
   return (
     <>
@@ -75,7 +81,7 @@ export function Layout() {
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            {navigation.map((item) => (
+                            {navItems.map((item) => (
                               <li key={item.name}>
                                 <NavLink
                                   to={item.href}
@@ -132,7 +138,7 @@ export function Layout() {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navItems.map((item) => (
                       <li key={item.name}>
                         <NavLink
                           to={item.href}
