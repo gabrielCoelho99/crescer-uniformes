@@ -83,25 +83,25 @@ export function AdminDashboard() {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val)
   }
 
-  if (loading) return <div className="p-4">Carregando métricas...</div>
+  if (loading) return <div className="p-4 dark:text-gray-300">Carregando métricas...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Painel Administrativo</h1>
+      <h1 className="text-2xl font-bold mb-6 dark:text-white">Painel Administrativo</h1>
 
       {/* Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
-        <div className="bg-white overflow-hidden shadow rounded-lg">
+        <div className="bg-white overflow-hidden shadow rounded-lg dark:bg-gray-800">
           <div className="p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <CurrencyDollarIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                <CurrencyDollarIcon className="h-6 w-6 text-gray-400 dark:text-gray-500" aria-hidden="true" />
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Faturamento Total</dt>
+                  <dt className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Faturamento Total</dt>
                   <dd>
-                    <div className="text-lg font-medium text-gray-900">{formatCurrency(metrics.totalRevenue)}</div>
+                    <div className="text-lg font-medium text-gray-900 dark:text-white">{formatCurrency(metrics.totalRevenue)}</div>
                   </dd>
                 </dl>
               </div>
@@ -109,17 +109,17 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white overflow-hidden shadow rounded-lg">
+        <div className="bg-white overflow-hidden shadow rounded-lg dark:bg-gray-800">
           <div className="p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <BanknotesIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
+                <BanknotesIcon className="h-6 w-6 text-green-400 dark:text-green-500" aria-hidden="true" />
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Total Recebido</dt>
+                  <dt className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Total Recebido</dt>
                   <dd>
-                    <div className="text-lg font-medium text-gray-900">{formatCurrency(metrics.totalReceived)}</div>
+                    <div className="text-lg font-medium text-gray-900 dark:text-white">{formatCurrency(metrics.totalReceived)}</div>
                   </dd>
                 </dl>
               </div>
@@ -127,17 +127,17 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white overflow-hidden shadow rounded-lg">
+        <div className="bg-white overflow-hidden shadow rounded-lg dark:bg-gray-800">
           <div className="p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <ExclamationCircleIcon className="h-6 w-6 text-red-400" aria-hidden="true" />
+                <ExclamationCircleIcon className="h-6 w-6 text-red-400 dark:text-red-500" aria-hidden="true" />
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">A Receber (Pendente)</dt>
+                  <dt className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">A Receber (Pendente)</dt>
                   <dd>
-                    <div className="text-lg font-medium text-gray-900">{formatCurrency(metrics.totalPending)}</div>
+                    <div className="text-lg font-medium text-gray-900 dark:text-white">{formatCurrency(metrics.totalPending)}</div>
                   </dd>
                 </dl>
               </div>
@@ -147,34 +147,34 @@ export function AdminDashboard() {
       </div>
 
       {/* Table */}
-      <h2 className="text-lg font-semibold mb-4">Contas a Receber (Pendentes)</h2>
+      <h2 className="text-lg font-semibold mb-4 dark:text-white">Contas a Receber (Pendentes)</h2>
       <div className="flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-700">
                   <tr>
-                    <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Cliente</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Data</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total Pedido</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Pago</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-red-600">Falta</th>
+                    <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Cliente</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Data</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Total Pedido</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Pago</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-red-600 dark:text-red-400">Falta</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
                   {pendingOrders.map((order) => (
                     <tr key={order.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">{order.customer_name}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{order.date}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{formatCurrency(order.total)}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{formatCurrency(order.paid)}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm font-bold text-red-600">{formatCurrency(order.pending)}</td>
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-white">{order.customer_name}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{order.date}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{formatCurrency(order.total)}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{formatCurrency(order.paid)}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm font-bold text-red-600 dark:text-red-400">{formatCurrency(order.pending)}</td>
                     </tr>
                   ))}
                   {pendingOrders.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="text-center py-4 text-gray-500">Nenhuma pendência encontrada! 🎉</td>
+                      <td colSpan={5} className="text-center py-4 text-gray-500 dark:text-gray-400">Nenhuma pendência encontrada! 🎉</td>
                     </tr>
                   )}
                 </tbody>

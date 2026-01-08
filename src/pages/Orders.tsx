@@ -211,8 +211,8 @@ export function Orders() {
     <div>
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Pedidos</h1>
-          <p className="mt-2 text-sm text-gray-700">
+          <h1 className="text-base font-semibold leading-6 text-gray-900 dark:text-white">Pedidos</h1>
+          <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
             Gerencie as vendas, prazos e entregas.
           </p>
         </div>
@@ -233,20 +233,20 @@ export function Orders() {
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
-                    <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Cliente</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Escola</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Prazo</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Financeiro</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Entrega</th>
+                    <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Cliente</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Escola</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Prazo</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Financeiro</th>
+                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Entrega</th>
                     {isAdmin && <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
                   {loading ? (
-                    <tr><td colSpan={6} className="text-center py-4">Carregando...</td></tr>
+                    <tr><td colSpan={6} className="text-center py-4 dark:text-gray-400">Carregando...</td></tr>
                   ) : orders.map((order) => {
                      const total = order.total_amount || 0
                      const paid = order.amount_paid || 0
@@ -256,14 +256,14 @@ export function Orders() {
 
                      return (
                     <tr key={order.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">{order.customer?.name}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{order.school}</td>
-                      <td className={`whitespace-nowrap px-3 py-4 text-sm ${deadline?.color || 'text-gray-500'}`}>
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-white">{order.customer?.name}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{order.school}</td>
+                      <td className={`whitespace-nowrap px-3 py-4 text-sm ${deadline?.color || 'text-gray-500 dark:text-gray-400'}`}>
                         {deadline?.label || '-'}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm">
-                        <div className="font-medium text-gray-900">{formatCurrency(total)}</div>
-                        <div className={`text-xs ${remaining > 0 ? 'text-red-600 font-bold' : 'text-green-600'}`}>
+                        <div className="font-medium text-gray-900 dark:text-white">{formatCurrency(total)}</div>
+                        <div className={`text-xs ${remaining > 0 ? 'text-red-600 dark:text-red-400 font-bold' : 'text-green-600 dark:text-green-400'}`}>
                           {remaining > 0 ? `Falta ${formatCurrency(remaining)}` : 'Pago'}
                         </div>
                       </td>
@@ -273,7 +273,7 @@ export function Orders() {
                         </span>
                         <button 
                            onClick={() => { setSelectedOrder(order); setDeliveryModalOpen(true); }}
-                           className="ml-2 text-indigo-600 hover:text-indigo-900" 
+                           className="ml-2 text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300" 
                            title="Gerenciar Entrega"
                         >
                            <ClipboardDocumentCheckIcon className="h-5 w-5 inline" />
@@ -298,84 +298,84 @@ export function Orders() {
        {/* Create Modal */}
        {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 overflow-y-auto">
-          <div className="w-full max-w-3xl bg-white rounded-lg p-6 shadow-xl my-8">
-            <h2 className="text-lg font-semibold mb-4">Novo Pedido</h2>
+          <div className="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl my-8">
+            <h2 className="text-lg font-semibold mb-4 dark:text-white">Novo Pedido</h2>
             <form onSubmit={handleCreateOrder} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                   <label className="block text-sm font-medium text-gray-700">Cliente</label>
-                   <select required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)}>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Cliente</label>
+                   <select required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)}>
                      <option value="">Selecione...</option>
                      {customers.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                    </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Escola</label>
-                  <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" value={school} onChange={(e) => setSchool(e.target.value)}>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Escola</label>
+                  <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={school} onChange={(e) => setSchool(e.target.value)}>
                      {SCHOOLS.map(s => <option key={s} value={s}>{s}</option>)}
                    </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Data Compra</label>
-                  <input type="date" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" value={purchaseDate} onChange={(e) => setPurchaseDate(e.target.value)} />
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Data Compra</label>
+                  <input type="date" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={purchaseDate} onChange={(e) => setPurchaseDate(e.target.value)} />
                 </div>
                  <div>
-                  <label className="block text-sm font-medium text-gray-700">Prazo de Entrega</label>
-                  <input type="date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Prazo de Entrega</label>
+                  <input type="date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
                 </div>
                 <div className="sm:col-span-2">
-                   <label className="block text-sm font-medium text-gray-700">Observações</label>
-                   <textarea className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} />
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Observações</label>
+                   <textarea className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} />
                 </div>
               </div>
 
               {/* Items Section */}
-              <div className="border-t pt-4">
+              <div className="border-t pt-4 dark:border-gray-700">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-sm font-medium text-gray-900">Itens do Pedido</h3>
-                  <button type="button" onClick={addItem} className="text-sm text-indigo-600 hover:text-indigo-500">+ Adicionar Peça</button>
+                  <h3 className="text-sm font-medium text-gray-900 dark:text-white">Itens do Pedido</h3>
+                  <button type="button" onClick={addItem} className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">+ Adicionar Peça</button>
                 </div>
                 {items.map((item, index) => (
                   <div key={index} className="flex gap-2 mb-2 items-end">
                     <div className="flex-grow">
-                      <label className="text-xs text-gray-500">Produto</label>
-                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1" value={item.product} onChange={(e) => updateItem(index, 'product', e.target.value)}>
+                      <label className="text-xs text-gray-500 dark:text-gray-400">Produto</label>
+                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.product} onChange={(e) => updateItem(index, 'product', e.target.value)}>
                          {PRODUCTS.map(p => <option key={p} value={p}>{p}</option>)}
                       </select>
                     </div>
                     <div className="w-20">
-                      <label className="text-xs text-gray-500">Tam.</label>
-                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1" value={item.size} onChange={(e) => updateItem(index, 'size', e.target.value)}>
+                      <label className="text-xs text-gray-500 dark:text-gray-400">Tam.</label>
+                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.size} onChange={(e) => updateItem(index, 'size', e.target.value)}>
                          {SIZES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </div>
                     <div className="w-20">
-                      <label className="text-xs text-gray-500">Qtd.</label>
-                      <input type="number" min="1" className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1" value={item.quantity} onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))} />
+                      <label className="text-xs text-gray-500 dark:text-gray-400">Qtd.</label>
+                      <input type="number" min="1" className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.quantity} onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))} />
                     </div>
                     <div className="w-24">
-                      <label className="text-xs text-gray-500">R$ Un.</label>
-                      <input type="number" step="0.01" className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1" value={item.unitPrice} onChange={(e) => updateItem(index, 'unitPrice', e.target.value)} />
+                      <label className="text-xs text-gray-500 dark:text-gray-400">R$ Un.</label>
+                      <input type="number" step="0.01" className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.unitPrice} onChange={(e) => updateItem(index, 'unitPrice', e.target.value)} />
                     </div>
                     <button type="button" onClick={() => removeItem(index)} className="text-red-600 p-1 mb-1"><TrashIcon className="h-4 w-4" /></button>
                   </div>
                 ))}
-                <div className="text-right text-lg font-bold mt-2">
+                <div className="text-right text-lg font-bold mt-2 dark:text-white">
                   Total Pedido: {formatCurrency(calculateTotal())}
                 </div>
               </div>
 
               {/* Payment Section */}
-              <div className="border-t pt-4 bg-gray-50 p-4 rounded">
-                <h3 className="text-sm font-medium text-gray-900 mb-2">Pagamento</h3>
+              <div className="border-t pt-4 bg-gray-50 dark:bg-gray-700/50 p-4 rounded dark:border-gray-700">
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Pagamento</h3>
                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Valor Pago (Entrada)</label>
-                        <input type="number" step="0.01" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" value={amountPaid} onChange={(e) => setAmountPaid(e.target.value)} />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Valor Pago (Entrada)</label>
+                        <input type="number" step="0.01" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={amountPaid} onChange={(e) => setAmountPaid(e.target.value)} />
                     </div>
                      <div>
-                        <label className="block text-sm font-medium text-gray-700">Falta Pagar</label>
-                        <div className="mt-1 block w-full p-2 text-red-600 font-bold">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Falta Pagar</label>
+                        <div className="mt-1 block w-full p-2 text-red-600 dark:text-red-400 font-bold">
                             {formatCurrency(calculateTotal() - (parseFloat(amountPaid) || 0))}
                         </div>
                     </div>
@@ -383,7 +383,7 @@ export function Orders() {
               </div>
 
               <div className="flex justify-end gap-2 mt-6">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">Cancelar</button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Cancelar</button>
                 <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">Salvar Pedido</button>
               </div>
             </form>

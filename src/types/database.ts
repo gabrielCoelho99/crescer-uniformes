@@ -2,7 +2,10 @@ export type Profile = {
   id: string
   email: string
   full_name: string | null
+  phone: string | null
+  avatar_url: string | null
   role: 'admin' | 'employee'
+  created_at: string
 }
 
 export type Customer = {

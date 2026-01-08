@@ -4,8 +4,14 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+/* Force Dark Mode Greenish Theme */
+html {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  @apply bg-gray-900 text-white;
 }

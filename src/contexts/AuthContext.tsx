@@ -10,6 +10,7 @@ type AuthContextType = {
   loading: boolean
   isAdmin: boolean
   signOut: () => Promise<void>
+  refreshProfile: () => void
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -19,6 +20,7 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
   isAdmin: false,
   signOut: async () => {},
+  refreshProfile: () => {},
 })
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -77,6 +79,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     loading,
     isAdmin: profile?.role === 'admin',
     signOut,
+    refreshProfile: () => user && fetchProfile(user.id)
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
