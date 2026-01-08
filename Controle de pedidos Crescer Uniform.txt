@@ -1,0 +1,17 @@
+Controle de pedidos Crescer Uniformes
+
+- Pedido {
+	Nome do Cliente
+	Telefone
+	Situação de Pagamento
+	Entregue? (sim|não|parcial)
+	Compra (peças)
+	O que tem disponível?
+}
+
+- Peças de cadastro padrão: Polo Infantil, Short Tactel, Short Saia Tactel, Polo Branca Fundamental I, Polo Branca Fundamental II, Polo Azul Marinho Ensino médio, Calça Tactel, Regata Vinho Ed. Física, Blusa Vinho Ed. Física. 
+	(todas essas peças seguem o mesmo padrão de tamanhos, 2, 4, 6, 8, 10, 12, 14, 16, PP, P, M, G, GG, XG, XGG)
+- Fazer um novo cadastro de pedido
+- Editar pedido já lançado
+- Excluir pedido
+- Dar "Baixa" em pedido (ok, check, concluído)

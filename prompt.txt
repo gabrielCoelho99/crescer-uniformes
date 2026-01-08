@@ -1,0 +1,9 @@
+
+Preciso de um aplicativo de cadastro de clientes, telefone dos clientes e dos uniformes que os clientes compraram, além de um campo para a informação se já está pago 50% ou se foi pago total, ou se tem alguma observação no pagamento de quanto falta, além de um campo também para alguma observação sobre a compra, quero poder cadastrar cada cliente com seus uniformes e quero que essas informações fiquem salvas localmente, pode ser em um arquivo json ou em um banco de dados local como o mysql, o que for mais fácil, e quero poder pesquisar pelo nome do cliente ou pelo telefone para que quando eu pesquise apareça as informações cadastradas do cliente.
+Arrume essa ideia comigo, e me ajude a desenvolver esse projeto.
+
+
+na parte de status de pagamento, coloque apenas um campo onde eu possa digitar a informação de status de pagamento.
+e na data de cadastro, deixe o campo como data de compra para que eu possa preenche-lo com a data que o cliente fez a compra
+
+quero também um campo para adicionar a escola de onde é o uniforme que o cliente fez a compra, as escolas são, crescimento, babytoom, child time, maple bear, diante do saber, santa teresa, audaz, Trinum, Ciranda, Diante do Aprender.
