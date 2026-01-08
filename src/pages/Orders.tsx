@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
-import { type Customer, type OrderItem } from '../types/database'
+import type { Customer, OrderWithCustomer } from '../types/database'
 import { useAuth } from '../contexts/AuthContext'
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
+import { PaymentModal } from '../components/PaymentModal'
 
 const SCHOOLS = [
   'Crescimento', 'Babytoom', 'Child Time', 'Maple Bear', 'Diante do Saber', 
@@ -18,19 +19,7 @@ const PRODUCTS = [
 
 const SIZES = ['2', '4', '6', '8', '10', '12', '14', '16', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG']
 
-type OrderWithCustomer = {
-  id: string
-  created_at: string
-  customer: { name: string } | null
-  purchase_date: string
-  due_date: string | null
-  payment_status: string 
-  delivery_status: string
-  school: string
-  items: OrderItem[]
-  total_amount: number
-  amount_paid: number
-}
+// Local type definition removed in favor of shared type from database.ts
 
 export function Orders() {
   const { isAdmin } = useAuth()
@@ -42,6 +31,10 @@ export function Orders() {
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
   const [selectedOrder, setSelectedOrder] = useState<OrderWithCustomer | null>(null)
+  
+  // Payment Modal State
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false)
+  const [selectedOrderForPayment, setSelectedOrderForPayment] = useState<OrderWithCustomer | null>(null)
 
   // Form State
   const [selectedCustomer, setSelectedCustomer] = useState('')
@@ -264,7 +257,14 @@ export function Orders() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm">
                         <div className="font-medium text-gray-900 dark:text-white">{formatCurrency(total)}</div>
                         <div className={`text-xs ${remaining > 0 ? 'text-red-600 dark:text-red-400 font-bold' : 'text-green-600 dark:text-green-400'}`}>
-                          {remaining > 0 ? `Falta ${formatCurrency(remaining)}` : 'Pago'}
+                          {remaining > 0 ? (
+                                <div className="flex flex-col items-start gap-1">
+                                    <span>Falta {formatCurrency(remaining)}</span>
+                                    <button onClick={() => { setSelectedOrderForPayment(order); setPaymentModalOpen(true); }} className="text-blue-600 hover:underline dark:text-blue-400 text-[10px] uppercase font-bold tracking-wider bg-blue-50 dark:bg-blue-900/30 px-1 rounded">
+                                        Pagar
+                                    </button>
+                                </div>
+                          ) : 'Pago'}
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm">
@@ -389,6 +389,16 @@ export function Orders() {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Payment Modal */}
+      {paymentModalOpen && selectedOrderForPayment && (
+          <PaymentModal 
+            open={paymentModalOpen} 
+            onClose={() => setPaymentModalOpen(false)}
+            order={selectedOrderForPayment}
+            onUpdate={fetchOrders}
+          />
       )}
 
       {/* Manage Delivery Modal */}

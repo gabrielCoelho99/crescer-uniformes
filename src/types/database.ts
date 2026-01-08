@@ -39,3 +39,8 @@ export type OrderItem = {
   unit_price: number
   quantity_delivered: number
 }
+
+export type OrderWithCustomer = Order & {
+  customer: { name: string } | null
+  items: OrderItem[]
+}
