@@ -16,6 +16,7 @@ import clsx from 'clsx'
 const navigation = [
   { name: 'Dashboard', href: '/', icon: HomeIcon },
   { name: 'Clientes', href: '/customers', icon: UsersIcon },
+  { name: 'Produtos', href: '/products', icon: ShoppingBagIcon },
   { name: 'Pedidos', href: '/orders', icon: ShoppingBagIcon },
 ]
 
@@ -51,7 +52,7 @@ export function Layout() {
               {/* Sidebar Content */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-800">
                 <div className="flex h-16 shrink-0 items-center">
-                  <h1 className="text-white text-xl font-bold">Crescer</h1>
+                  <h1 className="text-white text-xl font-bold">LogisticaFlow</h1>
                 </div>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -109,7 +110,7 @@ export function Layout() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-800">
             <div className="flex h-16 shrink-0 items-center">
-               <h1 className="text-white text-2xl font-bold">Crescer Uniformes</h1>
+               <h1 className="text-white text-2xl font-bold">LogisticaFlow</h1>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">

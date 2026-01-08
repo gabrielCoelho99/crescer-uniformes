@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { Login } from './pages/Login'
 import { Dashboard } from './pages/Dashboard'
+import { Products } from './pages/Products'
 import { Customers } from './pages/Customers'
 import { Orders } from './pages/Orders'
 import { Profile } from './pages/Profile'
@@ -20,6 +21,7 @@ export default function App() {
              <Route element={<Layout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="customers" element={<Customers />} />
+                <Route path="products" element={<Products />} />
                 <Route path="orders" element={<Orders />} />
                 <Route path="admin" element={<AdminDashboard />} />
                 <Route path="profile" element={<Profile />} />

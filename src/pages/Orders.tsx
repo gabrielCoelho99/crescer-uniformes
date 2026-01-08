@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
-import type { Customer, OrderWithCustomer } from '../types/database'
+import type { Customer, OrderWithCustomer, Product } from '../types/database'
 import { useAuth } from '../contexts/AuthContext'
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
 import { PaymentModal } from '../components/PaymentModal'
@@ -11,15 +11,7 @@ const SCHOOLS = [
   'Santa Teresa', 'Audaz', 'Trinum', 'Ciranda', 'Diante do Aprender'
 ]
 
-const PRODUCTS = [
-  'Polo Infantil', 'Short Tactel', 'Short Saia Tactel', 'Polo Branca Fundamental I',
-  'Polo Branca Fundamental II', 'Polo Azul Marinho Ensino médio', 'Calça Tactel',
-  'Regata Vinho Ed. Física', 'Blusa Vinho Ed. Física'
-]
-
 const SIZES = ['2', '4', '6', '8', '10', '12', '14', '16', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG']
-
-// Local type definition removed in favor of shared type from database.ts
 
 export function Orders() {
   const { isAdmin } = useAuth()
@@ -27,6 +19,7 @@ export function Orders() {
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [customers, setCustomers] = useState<Customer[]>([])
+  const [products, setProducts] = useState<Product[]>([])
   
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
@@ -50,6 +43,7 @@ export function Orders() {
   useEffect(() => {
     fetchOrders()
     fetchCustomers()
+    fetchProducts()
   }, [])
 
   const fetchOrders = async () => {
@@ -77,8 +71,84 @@ export function Orders() {
     setCustomers(data || [])
   }
 
+  const fetchProducts = async () => {
+    const { data } = await supabase.from('products').select('*').order('name')
+    setProducts(data || [])
+  }
+
   const addItem = () => {
-    setItems([...items, { product: PRODUCTS[0], size: SIZES[0], quantity: 1, unitPrice: '0' }])
+    // Default to first product if available, else empty
+    const firstProduct = products.length > 0 ? products[0] : null
+    setItems([...items, { 
+        product: firstProduct ? firstProduct.name : '', 
+        size: SIZES[0], 
+        quantity: 1, 
+        unitPrice: firstProduct ? (firstProduct.price || 0).toString() : '0' 
+    }])
+  }
+
+  // Quick Product Modal State
+  const [productModalOpen, setProductModalOpen] = useState(false)
+  const [newProductName, setNewProductName] = useState('')
+  const [newProductSchool, setNewProductSchool] = useState('')
+  const [newProductPrice, setNewProductPrice] = useState('')
+  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null)
+
+  const handleProductChange = async (index: number, value: string) => {
+    console.log('Product change:', value)
+    if (value === '__NEW__') {
+       setActiveItemIndex(index)
+       setNewProductName('')
+       setNewProductSchool('')
+       setNewProductPrice('')
+       setProductModalOpen(true)
+    } else {
+       // Auto-fill price
+       const product = products.find(p => p.name === value)
+       const price = product?.price || 0
+       
+       const newItems = [...items]
+       newItems[index] = { 
+           ...newItems[index], 
+           product: value,
+           unitPrice: price.toString()
+       }
+       setItems(newItems)
+    }
+  }
+
+
+  const handleCreateProduct = async (e: React.FormEvent) => {
+      e.preventDefault()
+      try {
+          const payload = {
+              name: newProductName,
+              school: newProductSchool,
+              price: parseFloat(newProductPrice) || 0,
+              category: 'Farda' // Default category
+          }
+          
+          const { data, error } = await supabase.from('products').insert([payload]).select().single()
+          
+          if (error) throw error
+          if (data) {
+              setProducts(prev => [...prev, data].sort((a,b) => a.name.localeCompare(b.name)))
+              
+              if (activeItemIndex !== null) {
+                  const newItems = [...items]
+                  newItems[activeItemIndex] = { 
+                      ...newItems[activeItemIndex], 
+                      product: data.name,
+                      unitPrice: (data.price || 0).toString()
+                  }
+                  setItems(newItems)
+              }
+              setProductModalOpen(false)
+          }
+      } catch (error) {
+          console.error(error)
+          alert('Erro ao criar produto')
+      }
   }
 
   const updateItem = (index: number, field: string, value: any) => {
@@ -339,8 +409,11 @@ export function Orders() {
                   <div key={index} className="flex gap-2 mb-2 items-end">
                     <div className="flex-grow">
                       <label className="text-xs text-gray-500 dark:text-gray-400">Produto</label>
-                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.product} onChange={(e) => updateItem(index, 'product', e.target.value)}>
-                         {PRODUCTS.map(p => <option key={p} value={p}>{p}</option>)}
+                      <select className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.product} onChange={(e) => handleProductChange(index, e.target.value)}>
+                         <option value="">Selecione...</option>
+                         <option value="__NEW__" className="font-bold text-indigo-600">+ Adicionar Novo Produto</option>
+                         <option disabled>──────────</option>
+                         {products.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
                       </select>
                     </div>
                     <div className="w-20">
@@ -409,6 +482,35 @@ export function Orders() {
           items={selectedOrder.items}
           onUpdate={fetchOrders}
         />
+      )}
+
+      {/* Quick Add Product Modal */}
+      {productModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/50 overflow-y-auto">
+           <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl my-8">
+               <h3 className="text-lg font-semibold mb-4 dark:text-white">Novo Produto Rápido</h3>
+               <form onSubmit={handleCreateProduct}>
+                  <div className="space-y-4">
+                      <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome</label>
+                          <input required type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={newProductName} onChange={e => setNewProductName(e.target.value)} />
+                      </div>
+                      <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Escola</label>
+                          <input type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={newProductSchool} onChange={e => setNewProductSchool(e.target.value)} />
+                      </div>
+                      <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Preço (R$)</label>
+                          <input required type="number" step="0.01" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={newProductPrice} onChange={e => setNewProductPrice(e.target.value)} />
+                      </div>
+                  </div>
+                  <div className="flex justify-end gap-2 mt-6">
+                      <button type="button" onClick={() => setProductModalOpen(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Cancelar</button>
+                      <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">Criar & Selecionar</button>
+                  </div>
+               </form>
+           </div>
+        </div>
       )}
     </div>
   )

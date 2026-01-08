@@ -40,6 +40,15 @@ export type OrderItem = {
   quantity_delivered: number
 }
 
+export type Product = {
+  id: string
+  name: string
+  category: string | null
+  school: string | null
+  price: number
+  created_at: string
+}
+
 export type OrderWithCustomer = Order & {
   customer: { name: string } | null
   items: OrderItem[]
