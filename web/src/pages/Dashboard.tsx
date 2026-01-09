@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ExclamationTriangleIcon, CalendarDaysIcon } from '@heroicons/react/24/outline'
 
 type DashboardOrder = {
@@ -12,6 +12,7 @@ type DashboardOrder = {
 }
 
 export function Dashboard() {
+  const navigate = useNavigate()
   const [overdue, setOverdue] = useState<DashboardOrder[]>([])
   const [upcoming, setUpcoming] = useState<DashboardOrder[]>([])
   const [stats, setStats] = useState({ delayed: 0, today: 0, pendingTotal: 0 })
@@ -102,7 +103,11 @@ export function Dashboard() {
             ) : overdue.map((order) => {
                 const prog = getProgress(order.order_items)
                 return (
-              <li key={order.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <li 
+                key={order.id} 
+                className="px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
+                onClick={() => navigate('/orders', { state: { focusOrderId: order.id, action: 'edit' } })}
+              >
                 <div className="flex justify-between items-center">
                    <div>
                       <p className="text-sm font-medium text-gray-900 dark:text-white">{order.customer?.name}</p>
@@ -110,7 +115,7 @@ export function Dashboard() {
                    </div>
                    <div className="text-right">
                       <p className="text-xs text-gray-500 dark:text-gray-400">Progresso: {prog.delivered}/{prog.total}</p>
-                      <Link to="/orders" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Ver Pedido</Link>
+                      <span className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Resolver</span>
                    </div>
                 </div>
               </li>
@@ -132,7 +137,11 @@ export function Dashboard() {
             ) : upcoming.map((order) => {
                 const isToday = order.due_date === new Date().toISOString().split('T')[0]
                 return (
-              <li key={order.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <li 
+                key={order.id} 
+                className="px-4 py-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
+                onClick={() => navigate('/orders', { state: { focusOrderId: order.id, action: 'delivery' } })}
+              >
                  <div className="flex justify-between items-center">
                    <div>
                       <p className="text-sm font-medium text-gray-900 dark:text-white">{order.customer?.name}</p>
@@ -140,7 +149,7 @@ export function Dashboard() {
                          {isToday ? 'HOJE' : `Para: ${new Date(order.due_date).toLocaleDateString()}`}
                       </p>
                    </div>
-                    <Link to="/orders" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Gerenciar</Link>
+                    <span className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Confirmar</span>
                 </div>
               </li>
             )})}

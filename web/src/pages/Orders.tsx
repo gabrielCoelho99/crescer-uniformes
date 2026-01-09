@@ -5,6 +5,7 @@ import type { Customer, OrderWithCustomer, Product } from '../types/database'
 import { useAuth } from '../contexts/AuthContext'
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
 import { PaymentModal } from '../components/PaymentModal'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const SCHOOLS = [
   'Crescimento', 'Babytoom', 'Child Time', 'Maple Bear', 'Diante do Saber', 
@@ -15,6 +16,8 @@ const SIZES = ['2', '4', '6', '8', '10', '12', '14', '16', 'PP', 'P', 'M', 'G', 
 
 export function Orders() {
   const { isAdmin } = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [orders, setOrders] = useState<OrderWithCustomer[]>([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -50,6 +53,25 @@ export function Orders() {
     fetchCustomers()
     fetchProducts()
   }, [])
+
+  // Deep Linking Handler
+  useEffect(() => {
+    if (!loading && orders.length > 0 && location.state?.focusOrderId) {
+        const { focusOrderId, action } = location.state
+        const targetOrder = orders.find(o => o.id === focusOrderId)
+        
+        if (targetOrder) {
+            if (action === 'edit') {
+                handleEditOrder(targetOrder)
+            } else if (action === 'delivery') {
+                setSelectedOrder(targetOrder)
+                setDeliveryModalOpen(true)
+            }
+            // Clear state to avoid reopening on refresh
+            navigate(location.pathname, { replace: true })
+        }
+    }
+  }, [loading, orders, location.state, navigate])
 
   const fetchOrders = async () => {
     try {
