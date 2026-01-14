@@ -26,7 +26,9 @@ export function Orders() {
   
   // Filtering & Sorting State
   const [filterSchool, setFilterSchool] = useState('ALL')
-  const [sortBy, setSortBy] = useState('DATE_DESC')
+  const [sortBy, setSortBy] = useState('DATE_ASC')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filterDate, setFilterDate] = useState('')
 
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
@@ -364,7 +366,21 @@ export function Orders() {
   // Filter Logic
   const filteredOrders = orders
     .filter(order => {
+        // School Filter
         if (filterSchool !== 'ALL' && order.school !== filterSchool) return false
+        
+        // Name Search
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase()
+            const customerName = order.customer?.name?.toLowerCase() || ''
+            if (!customerName.includes(query)) return false
+        }
+
+        // Purchase Date Filter
+        if (filterDate) {
+            if (order.purchase_date !== filterDate) return false
+        }
+
         return true
     })
     .sort((a, b) => {
@@ -396,7 +412,17 @@ export function Orders() {
       </div>
 
       {/* Filters & Sorting */}
-      <div className="mt-6 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+      <div className="mt-6 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm items-end">
+           <div className="flex-1">
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Buscar por Cliente</label>
+                <input 
+                    type="text"
+                    placeholder="Nome do cliente..."
+                    className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                />
+           </div>
            <div>
                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Filtrar por Escola</label>
                <select 
@@ -409,17 +435,34 @@ export function Orders() {
                </select>
            </div>
            <div>
+               <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Data da Compra</label>
+               <input 
+                   type="date"
+                   className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                   value={filterDate}
+                   onChange={e => setFilterDate(e.target.value)}
+               />
+           </div>
+           <div>
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Ordenar</label>
                 <select 
                     className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                     value={sortBy}
                     onChange={e => setSortBy(e.target.value)}
                     >
-                    <option value="DATE_DESC">Data Pedido (Mais Recente)</option>
                     <option value="DATE_ASC">Data Pedido (Mais Antigo)</option>
+                    <option value="DATE_DESC">Data Pedido (Mais Recente)</option>
                     <option value="ALPHA">Cliente (A-Z)</option>
                 </select>
            </div>
+           {(searchQuery || filterSchool !== 'ALL' || filterDate) && (
+               <button 
+                onClick={() => { setSearchQuery(''); setFilterSchool('ALL'); setFilterDate(''); }}
+                className="text-red-600 dark:text-red-400 text-xs font-medium hover:underline mb-3"
+               >
+                   Limpar Filtros
+               </button>
+           )}
       </div>
 
       {/* Orders List */}
