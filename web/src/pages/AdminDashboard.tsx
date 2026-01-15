@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { BanknotesIcon, CurrencyDollarIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { ImportReview } from '../components/ImportReview'
 
 type DashboardMetrics = {
   totalRevenue: number
@@ -139,12 +140,35 @@ export function AdminDashboard() {
   })
 
 
+  // Tabs
+  const [activeTab, setActiveTab] = useState<'overview' | 'imports'>('overview')
+
   if (loading) return <div className="p-4 dark:text-gray-300">Carregando métricas...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Dashboard Administrativo</h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Dashboard Administrativo</h1>
+        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg dark:bg-gray-700">
+            <button 
+                onClick={() => setActiveTab('overview')}
+                className={`px-4 py-2 text-sm font-medium rounded-md ${activeTab === 'overview' ? 'bg-white shadow text-gray-900 dark:bg-gray-600 dark:text-white' : 'text-gray-500 hover:text-gray-700 dark:text-gray-300'}`}
+            >
+                Visão Geral
+            </button>
+            <button 
+                onClick={() => setActiveTab('imports')}
+                className={`px-4 py-2 text-sm font-medium rounded-md ${activeTab === 'imports' ? 'bg-white shadow text-gray-900 dark:bg-gray-600 dark:text-white' : 'text-gray-500 hover:text-gray-700 dark:text-gray-300'}`}
+            >
+                Importações
+            </button>
+        </div>
+      </div>
 
+      {activeTab === 'imports' ? (
+          <ImportReview />
+      ) : (
+        <>
       {/* Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
         <div className="bg-white overflow-hidden shadow rounded-lg dark:bg-gray-800">
@@ -343,6 +367,8 @@ export function AdminDashboard() {
           </div>
         </div>
       </div>
+      </>
+      )}
     </div>
   )
 }

@@ -1,0 +1,2370 @@
+[
+  {
+    "raw_header": "DIANTE DO APRENDER-PAGO",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 vestidos T-4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "vestidos",
+        "size": "4"
+      }
+    ],
+    "customer": "Raquel da Silva Santos",
+    "phone": "98991888785",
+    "raw_lines": [
+      "2 vestidos T-4",
+      "Raquel da Silva Santos",
+      "98991888785"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pendente",
+    "items": [
+      "3 polos tam 6",
+      "1 regata tam 6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 3,
+        "product": "polos",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "6"
+      }
+    ],
+    "customer": "Luiza Fernandes",
+    "phone": "98982065999",
+    "raw_lines": [
+      "Luiza Fernandes 982065999",
+      "3 polos tam 6",
+      "1 regata tam 6"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. 10 anos fundamental 1",
+      "2 polo tam. 12 anos fundamental 1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental 1",
+        "size": "10"
+      },
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental 1",
+        "size": "12"
+      }
+    ],
+    "customer": "Mãe Iane",
+    "phone": "98987791190",
+    "raw_lines": [
+      "2 polo tam. 10 anos fundamental 1",
+      "2 polo tam. 12 anos fundamental 1",
+      "Mãe Iane cont.98779 1190"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago:",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo tam.10 anos fundamental.1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo  anos fundamental.1",
+        "size": "10"
+      }
+    ],
+    "customer": "Daniele Viana",
+    "phone": "98992441112",
+    "raw_lines": [
+      "1 polo tam.10 anos fundamental.1",
+      "Mãe  Daniele Viana pago",
+      "99244 1112"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo tam.12 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo  anos fundamental  1",
+        "size": "12"
+      }
+    ],
+    "customer": "Rose Lins",
+    "phone": "98999682566",
+    "raw_lines": [
+      "1 polo tam.12 anos fundamental  1",
+      "Mãe  Rose Lins pago",
+      "99968 2566"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "3 polo tam. 8 anos fundamental.1",
+      "1 regata tam. 8 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 3,
+        "product": "polo  anos fundamental.1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "regata  anos fundamental  1",
+        "size": "8"
+      }
+    ],
+    "customer": "Keila Sousa",
+    "phone": "98991164077",
+    "raw_lines": [
+      "3 polo tam. 8 anos fundamental.1",
+      "1 regata tam. 8 anos fundamental  1",
+      "Mãe  Keila Sousa  pago",
+      "Contato:99116 4077"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam P fundamental  2",
+      "1 calça  tam.P fundamental  2"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  fundamental  2",
+        "size": "P"
+      },
+      {
+        "quantity": 1,
+        "product": "calça   fundamental  2",
+        "size": "P"
+      }
+    ],
+    "customer": "Larissa Galvão",
+    "phone": "98996071787",
+    "raw_lines": [
+      "2 polo tam P fundamental  2",
+      "1 calça  tam.P fundamental  2",
+      "Mãe  Larissa Galvão  pago",
+      "Contato: 99607 1787"
+    ]
+  },
+  {
+    "raw_header": "Trinum:",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam.10 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "10"
+      }
+    ],
+    "customer": "Isabela Almeida",
+    "phone": "98984276506",
+    "raw_lines": [
+      "2 polo tam.10 anos fundamental  1",
+      "Mae: Isabela Almeida  pago",
+      "Contato : 98427 6506"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam.2 anos Ed. Infantil",
+      "1 regata tam. 2 anos Ed.infantil"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos Ed. Infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "regata  anos Ed.infantil",
+        "size": "2"
+      }
+    ],
+    "customer": "Maiane Serra",
+    "phone": "98988236256",
+    "raw_lines": [
+      "2 polo tam.2 anos Ed. Infantil",
+      "1 regata tam. 2 anos Ed.infantil",
+      "Mãe: Maiane Serra pago",
+      "Contato 98823 6256"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "3 polo tam.P fundamental  2"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 3,
+        "product": "polo  fundamental  2",
+        "size": "P"
+      }
+    ],
+    "customer": "Raissa Rodrigues",
+    "phone": "98991704804",
+    "raw_lines": [
+      "3 polo tam.P fundamental  2",
+      "Mae:Raissa Rodrigues pago",
+      "Contato; 99170 4804"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund.1 T-10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "10"
+      }
+    ],
+    "customer": "Flavia Lopes",
+    "phone": "98992230661",
+    "raw_lines": [
+      "1 polo fund.1 T-10",
+      "Flavia Lopes",
+      "98992230661"
+    ]
+  },
+  {
+    "raw_header": "Trinum : pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. PP  Ensino médio",
+      "1 camisa ED. Fis. Também pp"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo   Ensino médio",
+        "size": "PP"
+      },
+      {
+        "quantity": 1,
+        "product": "camisa ED. Fis. ém pp",
+        "size": "B"
+      }
+    ],
+    "customer": "Mae Carla Cunha",
+    "phone": "98987355507",
+    "raw_lines": [
+      "2 polo tam. PP  Ensino médio",
+      "1 camisa ED. Fis. Também pp",
+      "Mae: Carla Cunha  cont. 98735 5507"
+    ]
+  },
+  {
+    "raw_header": "Trinum: pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. 12 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "12"
+      }
+    ],
+    "customer": "Kessia Brito",
+    "phone": "98982003003",
+    "raw_lines": [
+      "2 polo tam. 12 anos fundamental  1",
+      "Mãe  : Kessia Brito",
+      "Contato: 9 8200 3003"
+    ]
+  },
+  {
+    "raw_header": "Trinum: pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. 6 anos fundamental  1",
+      "1 regata tam. 6 anos fundamental  1",
+      "1 calça  tam. 6 anos  fundamental  1",
+      "1 shorts seus tam. 6 anos fundamental 1",
+      "2 polo tam. 14 anos  fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "regata  anos fundamental  1",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "calça   anos  fundamental  1",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "shorts seus  anos fundamental 1",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "polo  anos  fundamental  1",
+        "size": "14"
+      }
+    ],
+    "customer": "Mae Adriana Marinho",
+    "phone": "98987092029",
+    "raw_lines": [
+      "2 polo tam. 6 anos fundamental  1",
+      "1 regata tam. 6 anos fundamental  1",
+      "1 calça  tam. 6 anos  fundamental  1",
+      "1 shorts seus tam. 6 anos fundamental 1",
+      "Mãe: Adriana Marinho  contato: 9 8709 2029 não é zap. Cont. Pai 99229 1229",
+      "Trunum : pago",
+      "2 polo tam. 14 anos  fundamental  1",
+      "Mae Adriana Marinho contato: 98709 2029"
+    ]
+  },
+  {
+    "raw_header": "Trinum : pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. P Ensino médio",
+      "2 calça  tam. P Ensino médio"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  Ensino médio",
+        "size": "P"
+      },
+      {
+        "quantity": 2,
+        "product": "calça   Ensino médio",
+        "size": "P"
+      }
+    ],
+    "customer": "Pai zap",
+    "phone": "98992291229",
+    "raw_lines": [
+      "2 polo tam. P Ensino médio",
+      "2 calça  tam. P Ensino médio",
+      "Mae: Adriana Marinho contato: 9 8709 2029",
+      "Pai zap : 9 9229 1229"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "3 polos fund.1 T-12"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 3,
+        "product": "polos fund.1",
+        "size": "12"
+      }
+    ],
+    "customer": "Tiago Carneiro",
+    "phone": "98984021705",
+    "raw_lines": [
+      "3 polos fund.1 T-12",
+      "Tiago Carneiro",
+      "98984021705"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund1 T-10",
+      "1 regata de Ed física fund1 T-10",
+      "1 bermuda T-10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund1",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "regata de Ed física fund1",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "10"
+      }
+    ],
+    "customer": "Bruna cutrim",
+    "phone": "9899022867",
+    "raw_lines": [
+      "1 polo fund1 T-10",
+      "1 regata de Ed física fund1 T-10",
+      "1 bermuda T-10",
+      "Bruna cutrim",
+      "98 99022867"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund.2 T-G",
+      "2 polos Fund 1 TAM 12"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund.2",
+        "size": "G"
+      },
+      {
+        "quantity": 2,
+        "product": "polos Fund 1",
+        "size": "12"
+      }
+    ],
+    "customer": "Flávia Santos",
+    "phone": "98984133436",
+    "raw_lines": [
+      "1 polo fund.2 T-G",
+      "Flávia Santos",
+      "98991938070",
+      "Carol banhos",
+      "98984133436",
+      "2 polos Fund 1 TAM 12"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "Duas polos TAM 2  pago"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "Duas polos   pago",
+        "size": "2"
+      }
+    ],
+    "customer": "Emanuelle Gomes",
+    "phone": "",
+    "raw_lines": [
+      "Emanuelle Gomes",
+      "Duas polos TAM 2  pago"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "Uma calça P pago"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "Uma calça P pago",
+        "size": "Padrão"
+      }
+    ],
+    "customer": "Anne Oliveira",
+    "phone": "98984180328",
+    "raw_lines": [
+      "Anne Oliveira 984180328",
+      "Uma calça P pago"
+    ]
+  },
+  {
+    "raw_header": "Trinum",
+    "school": "TRINUM",
+    "payment_status": "Pendente",
+    "items": [],
+    "parsed_items": [],
+    "customer": "Cliente Desconhecido",
+    "phone": "",
+    "raw_lines": []
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos",
+      "2 regatas",
+      "2 shorts",
+      "1 calça"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 2,
+        "product": "regatas",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 2,
+        "product": "shorts",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "Padrão"
+      }
+    ],
+    "customer": "Livia Borgnetah",
+    "phone": "98998866542",
+    "raw_lines": [
+      "2 polos",
+      "2 regatas",
+      "2 shorts",
+      "1 calça",
+      "Livia Borgnetah",
+      "989988665424"
+    ]
+  },
+  {
+    "raw_header": "DIANTE DO APRENDER-PAGO METADE",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 conjunto T-14",
+      "1 bermuda T-14"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "conjunto",
+        "size": "14"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "14"
+      }
+    ],
+    "customer": "Cliente Desconhecido",
+    "phone": "",
+    "raw_lines": [
+      "1 conjunto T-14",
+      "1 bermuda T-14",
+      "PAGO 145,00 na loja, vai pagar 100,00 quando vier receber"
+    ]
+  },
+  {
+    "raw_header": "Mabel Trinum 981443520 (pago)",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo T 8 fund 1",
+      "2 calças tam P",
+      "2 polos Tam P",
+      "1 camisa vermelha T P",
+      "1 Unidade regata Infantil : T 6",
+      "1 unidade short saia : T 6",
+      "1 unidade camisa polo infantil 1 : T  6",
+      "2 Unidades de camisa polo F2 : T 16",
+      "2 unidades Calças: T 16",
+      "1 Unidade de camisa  vermelha : T 16",
+      "2 polos TAM 12 F1",
+      "Regata 2",
+      "Polo 2",
+      "Bermuda (4) x2",
+      "Regata (4)",
+      "Polo (4)",
+      "Polo tam 4 x2",
+      "Regata tam 4",
+      "2 unidades de calça T : P",
+      "Short saia tam 4 x2",
+      "Polo 4",
+      "Regata 4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  fund 1",
+        "size": "8"
+      },
+      {
+        "quantity": 2,
+        "product": "calças",
+        "size": "P"
+      },
+      {
+        "quantity": 2,
+        "product": "polos",
+        "size": "P"
+      },
+      {
+        "quantity": 1,
+        "product": "camisa vermelha",
+        "size": "P"
+      },
+      {
+        "quantity": 1,
+        "product": "Unidade regata Infantil",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "unidade short saia",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "unidade camisa polo infantil 1",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "Unidades de camisa polo F2",
+        "size": "16"
+      },
+      {
+        "quantity": 2,
+        "product": "unidades Calças",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "Unidade de camisa  vermelha",
+        "size": "16"
+      },
+      {
+        "quantity": 2,
+        "product": "polos  F1",
+        "size": "12"
+      },
+      {
+        "quantity": 1,
+        "product": "Regata",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "Bermuda (4) x2",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 1,
+        "product": "Regata (4)",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo (4)",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo  x2",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "Regata",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "unidades de calça",
+        "size": "P"
+      },
+      {
+        "quantity": 1,
+        "product": "Short saia  x2",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "Regata",
+        "size": "4"
+      }
+    ],
+    "customer": "Ellen Sofia8",
+    "phone": "9899973262",
+    "raw_lines": [
+      "2 polo T 8 fund 1",
+      "Fundamental 2",
+      "2 calças tam P",
+      "2 polos Tam P",
+      "1 camisa vermelha T P",
+      "Aline Portili (99) 988169523",
+      "Pago",
+      "1 Unidade regata Infantil : T 6",
+      "1 unidade short saia : T 6",
+      "1 unidade camisa polo infantil 1 : T  6",
+      "Danielle Berthier 98 991259559",
+      "Pago",
+      "2 Unidades de camisa polo F2 : T 16",
+      "2 unidades Calças: T 16",
+      "1 Unidade de camisa  vermelha : T 16",
+      "Ana isa 999062182 pago",
+      "2 polos TAM 12 F1",
+      "Juliana 988671316 pago",
+      "Regata 2",
+      "Polo 2",
+      "Bermuda (4) x2",
+      "Regata (4)",
+      "Polo (4)",
+      "Sabrina dourado  pago 982632892",
+      "Polo tam 4 x2",
+      "Regata tam 4",
+      "Úrsula Lacerta   98 981215338",
+      "pago",
+      "2 unidades de calça T : P",
+      "Ellen Sofia  999732628",
+      "Short saia tam 4 x2",
+      "Polo 4",
+      "Regata 4"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo T-pp",
+      "1 calça T-14",
+      "2 polos fundamaneto 1 tam 12",
+      "Polo fundamental 1 TAM 12 x3"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo",
+        "size": "PP"
+      },
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "14"
+      },
+      {
+        "quantity": 2,
+        "product": "polos fundamaneto 1",
+        "size": "12"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo fundamental 1  x3",
+        "size": "12"
+      }
+    ],
+    "customer": "Flávia Aragão8",
+    "phone": "9898280232",
+    "raw_lines": [
+      "1 polo T-pp",
+      "1 calça T-14",
+      "Rebeca Manuela",
+      "98986622105",
+      "Gleici Souza  989283927 pago",
+      "2 polos fundamaneto 1 tam 12",
+      "Flávia Aragão  982802328 pago",
+      "Polo fundamental 1 TAM 12 x3"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo inf.T-2",
+      "1 bermuda T-2",
+      "1 regata T-2",
+      "1 short saia T-2"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo inf.",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "2"
+      }
+    ],
+    "customer": "Victor Lima",
+    "phone": "9899081356",
+    "raw_lines": [
+      "1 polo inf.T-2",
+      "1 bermuda T-2",
+      "1 regata T-2",
+      "1 short saia T-2",
+      "Victor Lima",
+      "9899081356"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund.1 T-16",
+      "2 unidades de calça T : P",
+      "2 polos T: 16"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "16"
+      },
+      {
+        "quantity": 2,
+        "product": "unidades de calça",
+        "size": "P"
+      },
+      {
+        "quantity": 2,
+        "product": "polos",
+        "size": "16"
+      }
+    ],
+    "customer": "Úrsula Lacerta",
+    "phone": "98981215338",
+    "raw_lines": [
+      "1 polo fund.1 T-16",
+      "989992331000",
+      "Úrsula Lacerta   98 981215338",
+      "pago",
+      "2 unidades de calça T : P",
+      "2 polos T: 16"
+    ]
+  },
+  {
+    "raw_header": "DIANTE DO APRENDER-PAGO 50%",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "3 conjuntos aula T-12"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 3,
+        "product": "conjuntos aula",
+        "size": "12"
+      }
+    ],
+    "customer": "Cristiane Amaral",
+    "phone": "98988482330",
+    "raw_lines": [
+      "3 conjuntos aula T-12",
+      "1 conjuto ed.fisica T-12",
+      "Cristiane Amaral",
+      "98988482330"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos T-16",
+      "1 calça T-14"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "14"
+      }
+    ],
+    "customer": "Wehsla Salazar",
+    "phone": "98982401268",
+    "raw_lines": [
+      "2 polos T-16",
+      "1 calça T-14",
+      "Wehsla Salazar",
+      "98982401268"
+    ]
+  },
+  {
+    "raw_header": "DIANTE DO APRENDER-PAGO",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 conjunto ed.fisica T-6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "conjunto ed.fisica",
+        "size": "6"
+      }
+    ],
+    "customer": "Doralice Ribeiro",
+    "phone": "98999929432",
+    "raw_lines": [
+      "2 conjutos aula T-6",
+      "1 conjunto ed.fisica T-6",
+      "Doralice Ribeiro",
+      "98999929432"
+    ]
+  },
+  {
+    "raw_header": "DIANTE DO APRENDER-PAGO 50%",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 bermuda T-14"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "14"
+      }
+    ],
+    "customer": "MARA VITÓRIA",
+    "phone": "98987081774",
+    "raw_lines": [
+      "1 conjuto aula T-14",
+      "1 bermuda T-14",
+      "MARA VITÓRIA",
+      "98987081774"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-ARYTAMMA",
+    "school": "TRINUM",
+    "payment_status": "Pendente",
+    "items": [
+      "2 polos inf.T-4",
+      "2 bermudas T-4",
+      "1 regata T-4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos inf.",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "bermudas",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "4"
+      }
+    ],
+    "customer": "Arytamma",
+    "phone": "98984163009",
+    "raw_lines": [
+      "2 polos inf.T-4",
+      "2 bermudas T-4",
+      "1 regata T-4",
+      "Arytamma",
+      "98984163009"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 regata T-2",
+      "2 bermudas T-4",
+      "2 polos inf. T-4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "2"
+      },
+      {
+        "quantity": 2,
+        "product": "bermudas",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "polos inf.",
+        "size": "4"
+      }
+    ],
+    "customer": "Thayna Portugal",
+    "phone": "9899234996",
+    "raw_lines": [
+      "1 regata T-2",
+      "2 bermudas T-4",
+      "2 polos inf. T-4",
+      "Thayna Portugal",
+      "9899234996"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo  tam. 14anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo   fundamental  1",
+        "size": "14ANOS"
+      }
+    ],
+    "customer": "Mãe  Franciele",
+    "phone": "81998548018",
+    "raw_lines": [
+      "1 polo  tam. 14anos fundamental  1",
+      "Mãe  Franciele  contato 8199854 8018"
+    ]
+  },
+  {
+    "raw_header": "Diante do Aprender: pago",
+    "school": "DIANTE DO APRENDER",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo tam. 10 anos",
+      "1 regata  tam. 10 anos",
+      "1 calça  tam. 10 anos",
+      "1 Bermudas  tam. 10 ano"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo  anos",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "regata   anos",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "calça   anos",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "Bermudas   ano",
+        "size": "10"
+      }
+    ],
+    "customer": "Gilma Meireles ato 9 8424  7596",
+    "phone": "",
+    "raw_lines": [
+      "1 polo tam. 10 anos",
+      "1 regata  tam. 10 anos",
+      "1 calça  tam. 10 anos",
+      "1 Bermudas  tam. 10 ano",
+      "Mãe  Gilma Meireles contato 9 8424  7596"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos fund.1 T-10",
+      "2 polos inf. T-4",
+      "2 bermudas T-4",
+      "1 regata T-4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "10"
+      },
+      {
+        "quantity": 2,
+        "product": "polos inf.",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "bermudas",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "4"
+      }
+    ],
+    "customer": "Franciane Viana",
+    "phone": "98982408996",
+    "raw_lines": [
+      "2 polos fund.1 T-10",
+      "2 polos inf. T-4",
+      "2 bermudas T-4",
+      "1 regata T-4",
+      "Franciane Viana",
+      "98982408996"
+    ]
+  },
+  {
+    "raw_header": "TRINUM  - PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 Calça Tamanho M",
+      "2 Polo Ensino médio M"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "Calça  M",
+        "size": "ANHO"
+      },
+      {
+        "quantity": 2,
+        "product": "Polo Ensino médio M",
+        "size": "Padrão"
+      }
+    ],
+    "customer": "Benilda Sousa",
+    "phone": "98981157060",
+    "raw_lines": [
+      "1 Calça Tamanho M",
+      "2 Polo Ensino médio M",
+      "Benilda Sousa",
+      "98 981157060"
+    ]
+  },
+  {
+    "raw_header": "TRINUM- PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos fund.1 T-10",
+      "2 polos inf. T-6",
+      "1 regata T-6",
+      "1 short saia T-10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "10"
+      },
+      {
+        "quantity": 2,
+        "product": "polos inf.",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "10"
+      }
+    ],
+    "customer": "Rayane Reis",
+    "phone": "",
+    "raw_lines": [
+      "2 polos fund.1 T-10",
+      "2 polos inf. T-6",
+      "1 regata T-6",
+      "1 short saia T-10",
+      "Rayane Reis"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 calças T-16",
+      "1 bermuda T-M",
+      "1 polo fund.2 T-P"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "calças",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "M"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.2",
+        "size": "P"
+      }
+    ],
+    "customer": "Nívea36",
+    "phone": "98989922993",
+    "raw_lines": [
+      "2 calças T-16",
+      "1 bermuda T-M",
+      "1 polo fund.2 T-P",
+      "Igor Sérgio 98991714592",
+      "Nívea 98992299336"
+    ]
+  },
+  {
+    "raw_header": "TRINUM - PAGo",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 camisa ensino médio P"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "camisa ensino médio P",
+        "size": "Padrão"
+      }
+    ],
+    "customer": "Lidiane Santana",
+    "phone": "98984124877",
+    "raw_lines": [
+      "1 camisa ensino médio P",
+      "Lidiane Santana",
+      "98 984124877"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos fund.1 T-14",
+      "1 calça T-16"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "14"
+      },
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "16"
+      }
+    ],
+    "customer": "Laís Fernandes",
+    "phone": "98988155676",
+    "raw_lines": [
+      "2 polos fund.1 T-14",
+      "1 calça T-16",
+      "Laís Fernandes",
+      "989881556763"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo inf. T-6",
+      "1 polo fund.1 T-10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo inf.",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "10"
+      }
+    ],
+    "customer": "Daiane Callegario",
+    "phone": "98984911010",
+    "raw_lines": [
+      "1 polo inf. T-6",
+      "1 polo fund.1 T-10",
+      "Daiane Callegario",
+      "98984911010"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo inf. T-8",
+      "1 polo fund.1 T-8",
+      "1 short saia T-6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo inf.",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "6"
+      }
+    ],
+    "customer": "Daniela Moura",
+    "phone": "98992152970",
+    "raw_lines": [
+      "1 polo inf. T-8",
+      "1 polo fund.1 T-8",
+      "1 short saia T-6",
+      "Daniela Moura",
+      "98992152970"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 calça T-M",
+      "2 polos fund.1 T-14",
+      "1 calça fund.1 T-14"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "M"
+      },
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "14"
+      },
+      {
+        "quantity": 1,
+        "product": "calça fund.1",
+        "size": "14"
+      }
+    ],
+    "customer": "Fernanda Lima",
+    "phone": "9891983940",
+    "raw_lines": [
+      "1 calça T-M",
+      "2 polos fund.1 T-14",
+      "1 calça fund.1 T-14",
+      "Fernanda Lima",
+      "9891983940"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund.1 T-10",
+      "1 polo fund.1 T-14",
+      "1 bermuda T-10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "14"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "10"
+      }
+    ],
+    "customer": "Lilian Brasil",
+    "phone": "98988488416",
+    "raw_lines": [
+      "1 polo fund.1 T-10",
+      "1 polo fund.1 T-14",
+      "1 bermuda T-10",
+      "Lilian Brasil",
+      "98988488416"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 short saia T-6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "6"
+      }
+    ],
+    "customer": "Cely Gama",
+    "phone": "98991429817",
+    "raw_lines": [
+      "1 short saia T-6",
+      "Cely Gama",
+      "98991429817"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 camisas polo inf. T-4",
+      "1 short saia T-4",
+      "1 bermuda T-4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "camisas polo inf.",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "4"
+      }
+    ],
+    "customer": "Quezia moraes",
+    "phone": "98988249834",
+    "raw_lines": [
+      "2 camisas polo inf. T-4",
+      "1 short saia T-4",
+      "1 bermuda T-4",
+      "Quezia moraes",
+      "98988249834"
+    ]
+  },
+  {
+    "raw_header": "Trinum :pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 calça  tam.16 anos  fundamental  2",
+      "1 camisa tam.16 anos fundamental 2",
+      "1 polo tam.16 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "calça   anos  fundamental  2",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "camisa  anos fundamental 2",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "polo  anos",
+        "size": "16"
+      }
+    ],
+    "customer": "Luana Sousa",
+    "phone": "98992004848",
+    "raw_lines": [
+      "1 calça  tam.16 anos  fundamental  2",
+      "1 camisa tam.16 anos fundamental 2",
+      "1 polo tam.16 anos",
+      "Mãe  Luana Sousa",
+      "Cont.99200 4848"
+    ]
+  },
+  {
+    "raw_header": "Trinum.pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 shorts sais tam .10 anos  infantil",
+      "1 bermuda tam. 10 anos infantil"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "shorts sais  .10 anos  infantil",
+        "size": "AM"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda  anos infantil",
+        "size": "10"
+      }
+    ],
+    "customer": "Luana Sousa",
+    "phone": "98992004848",
+    "raw_lines": [
+      "1 shorts sais tam .10 anos  infantil",
+      "1 bermuda tam. 10 anos infantil",
+      "Mãe: Luana Sousa",
+      "99200 4848"
+    ]
+  },
+  {
+    "raw_header": "Trinum.pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 shorts sais tam .10 anos  infantil",
+      "1 bermuda tam. 10 anos infantil"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "shorts sais  .10 anos  infantil",
+        "size": "AM"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda  anos infantil",
+        "size": "10"
+      }
+    ],
+    "customer": "Luana Sousa",
+    "phone": "98992004848",
+    "raw_lines": [
+      "1 shorts sais tam .10 anos  infantil",
+      "1 bermuda tam. 10 anos infantil",
+      "Mãe: Luana Sousa",
+      "99200 4848"
+    ]
+  },
+  {
+    "raw_header": "Trinum.pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. 16 anos fundamental  1",
+      "1 calça  tam. 16 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "calça   anos fundamental  1",
+        "size": "16"
+      }
+    ],
+    "customer": "Lays Fernandes",
+    "phone": "98981556763",
+    "raw_lines": [
+      "2 polo tam. 16 anos fundamental  1",
+      "1 calça  tam. 16 anos fundamental  1",
+      "Mãe  Lays Fernandes",
+      "Contato. 98155 6763"
+    ]
+  },
+  {
+    "raw_header": "Trinum .pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 regata tam.4 anos  infantil",
+      "2 shorts saia tam. 6 anos infantil",
+      "2 polo tam.6 anos fundamental  1",
+      "2 polo tam.4 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "regata  anos  infantil",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "shorts saia  anos infantil",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "polo  anos",
+        "size": "4"
+      }
+    ],
+    "customer": "Elane Viana",
+    "phone": "99981107805",
+    "raw_lines": [
+      "1 regata tam.4 anos  infantil",
+      "2 shorts saia tam. 6 anos infantil",
+      "2 polo tam.6 anos fundamental  1",
+      "2 polo tam.4 anos",
+      "Mãe Elane Viana",
+      "Contato  99 98110 7805"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 shorts saia tam. 4 anos infantil",
+      "2 polo tam. 2 anos",
+      "1 regata tam. 2 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "shorts saia  anos infantil",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "polo  anos",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "regata  anos",
+        "size": "2"
+      }
+    ],
+    "customer": "9",
+    "phone": "98988364497",
+    "raw_lines": [
+      "2 shorts saia tam. 4 anos infantil",
+      "2 polo tam. 2 anos",
+      "1 regata tam. 2 anos",
+      "Mae  Bianca Lacerda",
+      "Contato  9 98836 4497"
+    ]
+  },
+  {
+    "raw_header": "Trinum.pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo tam.2 anos infantil",
+      "2 regata 2 anos infantil",
+      "2 bermuda  tam.2 anos infantil",
+      "1 regata  tam.4 anos",
+      "1 polo tam.4 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo  anos infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 2,
+        "product": "regata 2 anos infantil",
+        "size": "Padrão"
+      },
+      {
+        "quantity": 2,
+        "product": "bermuda   anos infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "regata   anos",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "polo  anos",
+        "size": "4"
+      }
+    ],
+    "customer": "Lidiane Alves",
+    "phone": "98981878424",
+    "raw_lines": [
+      "1 polo tam.2 anos infantil",
+      "2 regata 2 anos infantil",
+      "2 bermuda  tam.2 anos infantil",
+      "1 regata  tam.4 anos",
+      "1 polo tam.4 anos",
+      "Mae  Lidiane Alves",
+      "Contato  9 8187 8424"
+    ]
+  },
+  {
+    "raw_header": "Trinum .pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam 14 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos fundamental  1",
+        "size": "14"
+      }
+    ],
+    "customer": "Maycon Diniz",
+    "phone": "98981060655",
+    "raw_lines": [
+      "2 polo tam 14 anos fundamental  1",
+      "Mae  Maycon Diniz",
+      "Contato  9 8106 0655"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo tam. 2 anos infantil",
+      "1 regata tam. 2 anos infantil",
+      "1 shorts saia tam. 4 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo  anos infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "regata  anos infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "shorts saia  anos",
+        "size": "4"
+      }
+    ],
+    "customer": "9 8407 37 76",
+    "phone": "",
+    "raw_lines": [
+      "1 polo tam. 2 anos infantil",
+      "1 regata tam. 2 anos infantil",
+      "1 shorts saia tam. 4 anos",
+      "Mae  Camila Ferrato",
+      "Contato  9 8407 37 76"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 calça T-12",
+      "2 polos fund.1 T-12",
+      "1 bermuda T-12"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "12"
+      },
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "12"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "12"
+      }
+    ],
+    "customer": "Francimery Marques",
+    "phone": "",
+    "raw_lines": [
+      "1 calça T-12",
+      "2 polos fund.1 T-12",
+      "1 bermuda T-12",
+      "Francimery Marques",
+      "Entrega, araçagy"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago.",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 calça  tam. 16 anos fundamental 2"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "calça   anos fundamental 2",
+        "size": "16"
+      }
+    ],
+    "customer": "Luis Claudio",
+    "phone": "98991520112",
+    "raw_lines": [
+      "1 calça  tam. 16 anos fundamental 2",
+      "Pai: Luis Claudio",
+      "Contato 9 9152 0112"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo  tam. 8 anos fundamental  1",
+      "1 bermuda tam. 8 anos fundamental  1"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo   anos fundamental  1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "bermuda  anos fundamental  1",
+        "size": "8"
+      }
+    ],
+    "customer": "Marina Pedrosa",
+    "phone": "98991406480",
+    "raw_lines": [
+      "2 polo  tam. 8 anos fundamental  1",
+      "1 bermuda tam. 8 anos fundamental  1",
+      "Mãe  Marina Pedrosa",
+      "Contato  99140 6480"
+    ]
+  },
+  {
+    "raw_header": "TRINUM - PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "CALÇA T : 10"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "CALÇA",
+        "size": "10"
+      }
+    ],
+    "customer": "Cristiane Carvalho",
+    "phone": "98982293081",
+    "raw_lines": [
+      "CALÇA T : 10",
+      "Cristiane Carvalho",
+      "98 982293081"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo fund.1 T-8",
+      "1 polo fund.1 T-12"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "12"
+      }
+    ],
+    "customer": "Roberta Pinheiro",
+    "phone": "86981023182",
+    "raw_lines": [
+      "1 polo fund.1 T-8",
+      "1 polo fund.1 T-12",
+      "Roberta Pinheiro",
+      "86981023182"
+    ]
+  },
+  {
+    "raw_header": "TRINUM -Pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 unidades camisa infantil polo t : 4",
+      "1 unidade de regata vermelha t : 4",
+      "2 unidades de bermuda t 4"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "unidades camisa infantil polo",
+        "size": "4"
+      },
+      {
+        "quantity": 1,
+        "product": "unidade de regata vermelha",
+        "size": "4"
+      },
+      {
+        "quantity": 2,
+        "product": "unidades de bermuda",
+        "size": "4"
+      }
+    ],
+    "customer": "Frenda Tavares",
+    "phone": "98985172785",
+    "raw_lines": [
+      "2 unidades camisa infantil polo t : 4",
+      "1 unidade de regata vermelha t : 4",
+      "2 unidades de bermuda t 4",
+      "Frenda Tavares",
+      "98 985172785"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos fund.1 T-8"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "8"
+      }
+    ],
+    "customer": "Laize Prado",
+    "phone": "9884900724",
+    "raw_lines": [
+      "2 polos fund.1 T-8",
+      "Laize Prado",
+      "9884900724"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polos fund.1 T-8",
+      "1 regata T-8"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polos fund.1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "regata",
+        "size": "8"
+      }
+    ],
+    "customer": "Conceição Balileiero",
+    "phone": "98982288282",
+    "raw_lines": [
+      "2 polos fund.1 T-8",
+      "1 regata T-8",
+      "Conceição Balileiero",
+      "98982288282"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 bermuda tam 2",
+      "2 polo tam 2",
+      "Polo F1 TAM 10",
+      "Polo f1 TAM 8",
+      "Bermuda TAM 8",
+      "Polo F1 Tam 16",
+      "Short saia Tam 16"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "bermuda",
+        "size": "2"
+      },
+      {
+        "quantity": 2,
+        "product": "polo",
+        "size": "2"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo F1",
+        "size": "10"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo f1",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "Bermuda",
+        "size": "8"
+      },
+      {
+        "quantity": 1,
+        "product": "Polo F1",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "Short saia",
+        "size": "16"
+      }
+    ],
+    "customer": "Marco Antônio57",
+    "phone": "98996071787",
+    "raw_lines": [
+      "2 bermuda tam 2",
+      "2 polo tam 2",
+      "Regra tam 2",
+      "Natalia Santiago 988217792",
+      "Marco Antônio 98982328657",
+      "Polo F1 TAM 10",
+      "Polo f1 TAM 8",
+      "Bermuda TAM 8",
+      "Larissa Galvão",
+      "Polo F1 Tam 16",
+      "Short saia Tam 16",
+      "PG",
+      "98996071787"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 calça t-14",
+      "1 short saia T-6",
+      "1 polo fund.1 T-6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "14"
+      },
+      {
+        "quantity": 1,
+        "product": "short saia",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.1",
+        "size": "6"
+      }
+    ],
+    "customer": "Livia Paula",
+    "phone": "98988216979",
+    "raw_lines": [
+      "1 calça t-14",
+      "1 short saia T-6",
+      "1 polo fund.1 T-6",
+      "Livia Paula",
+      "98988216979"
+    ]
+  },
+  {
+    "raw_header": "TRINUM-PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 bermuda T-16",
+      "1 camisa vermelha T-16",
+      "1 calça T-16",
+      "1 polo fund.2 T-16"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "bermuda",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "camisa vermelha",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "calça",
+        "size": "16"
+      },
+      {
+        "quantity": 1,
+        "product": "polo fund.2",
+        "size": "16"
+      }
+    ],
+    "customer": "Joselia Ribeiro De Sousa",
+    "phone": "98988738568",
+    "raw_lines": [
+      "1 bermuda T-16",
+      "1 camisa vermelha T-16",
+      "1 calça T-16",
+      "1 polo fund.2 T-16",
+      "Joselia Ribeiro De Sousa",
+      "98988738568"
+    ]
+  },
+  {
+    "raw_header": "TRINUM- PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 Short saia T: 6",
+      "2 regata vermelha T:6",
+      "2 camisa polo Infantil T : 2 anos",
+      "2 regata vermelha T: 2"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "Short saia",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "regata vermelha",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "camisa polo Infantil  anos",
+        "size": "2"
+      },
+      {
+        "quantity": 2,
+        "product": "regata vermelha",
+        "size": "2"
+      }
+    ],
+    "customer": "Raysa Hellen",
+    "phone": "98981268853",
+    "raw_lines": [
+      "2 Short saia T: 6",
+      "2 regata vermelha T:6",
+      "2 camisa polo Infantil T : 2 anos",
+      "2 regata vermelha T: 2",
+      "Raysa Hellen",
+      "98 981268853"
+    ]
+  },
+  {
+    "raw_header": "TRINUM- PAGO",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 short saia  T: 6",
+      "2 polo fundamental 1 : T : 6",
+      "1 regata vermelha T: 6"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "short saia",
+        "size": "6"
+      },
+      {
+        "quantity": 2,
+        "product": "polo fundamental 1",
+        "size": "6"
+      },
+      {
+        "quantity": 1,
+        "product": "regata vermelha",
+        "size": "6"
+      }
+    ],
+    "customer": "NAYA MAYA",
+    "phone": "98981955722",
+    "raw_lines": [
+      "2 short saia  T: 6",
+      "2 polo fundamental 1 : T : 6",
+      "1 regata vermelha T: 6",
+      "NAYA MAYA",
+      "98 981955722"
+    ]
+  },
+  {
+    "raw_header": "Trinum .pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "2 polo tam. 2 anos infantil",
+      "2 Bermuda ta. 2 anos",
+      "1 regata ra. 2 anos"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 2,
+        "product": "polo  anos infantil",
+        "size": "2"
+      },
+      {
+        "quantity": 2,
+        "product": "Bermuda . 2 anos",
+        "size": "A"
+      },
+      {
+        "quantity": 1,
+        "product": "regata ra. 2 anos",
+        "size": "Padrão"
+      }
+    ],
+    "customer": "Nathalia Santiago",
+    "phone": "98988217792",
+    "raw_lines": [
+      "2 polo tam. 2 anos infantil",
+      "2 Bermuda ta. 2 anos",
+      "1 regata ra. 2 anos",
+      "Mãe  Nathalia Santiago",
+      "Contato 98821 7792"
+    ]
+  },
+  {
+    "raw_header": "Trinum pago",
+    "school": "TRINUM",
+    "payment_status": "Pago Total",
+    "items": [
+      "1 polo azul Marinho tam M Ensino médio"
+    ],
+    "parsed_items": [
+      {
+        "quantity": 1,
+        "product": "polo azul Marinho  Ensino médio",
+        "size": "M"
+      }
+    ],
+    "customer": "Elen Santos",
+    "phone": "98982268422",
+    "raw_lines": [
+      "1 polo azul Marinho tam M Ensino médio",
+      "Mae :Elen Santos",
+      "98 98226 8422"
+    ]
+  }
+]
