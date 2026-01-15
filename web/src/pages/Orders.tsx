@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline'
 import type { Customer, OrderWithCustomer, Product } from '../types/database'
 import { useAuth } from '../contexts/AuthContext'
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
@@ -334,7 +334,7 @@ export function Orders() {
   }
 
   const formatCurrency = (val: number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val)
-  const formatDate = (dateStr: string) => {
+  const formatDate = (dateStr: string | null) => {
       if (!dateStr) return '-'
       const [year, month, day] = dateStr.split('-')
       return `${day}/${month}/${year}`
@@ -479,7 +479,7 @@ export function Orders() {
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Prazo</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Financeiro</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Entrega</th>
-                    {isAdmin && <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>}
+                    <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
@@ -517,28 +517,21 @@ export function Orders() {
                         <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10 ${delivery.color}`}>
                           {delivery.label}
                         </span>
-                        <button 
-                           onClick={() => { setSelectedOrder(order); setDeliveryModalOpen(true); }}
-                           className="ml-2 text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300" 
-                           title="Gerenciar Entrega"
-                        >
-                           <ClipboardDocumentCheckIcon className="h-5 w-5 inline" />
-                        </button>
                       </td>
-                      {isAdmin && (
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                            <div className="flex justify-end gap-2">
                                 <button onClick={() => handleEditOrder(order)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300" title="Editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                       <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                     </svg>
                                 </button>
-                                <button onClick={() => handleDeleteOrder(order.id)} className="text-red-600 hover:text-red-900" title="Excluir">
-                                    <TrashIcon className="h-5 w-5" />
-                                </button>
+                                {isAdmin && (
+                                    <button onClick={() => handleDeleteOrder(order.id)} className="text-red-600 hover:text-red-900" title="Excluir">
+                                        <TrashIcon className="h-5 w-5" />
+                                    </button>
+                                )}
                            </div>
-                        </td>
-                      )}
+                      </td>
                     </tr>
                   )})}
                 </tbody>
@@ -610,6 +603,10 @@ export function Orders() {
                     <div className="w-20">
                       <label className="text-xs text-gray-500 dark:text-gray-400">Qtd.</label>
                       <input type="number" min="1" className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.quantity} onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))} />
+                    </div>
+                    <div className="w-20">
+                      <label className="text-xs text-gray-500 dark:text-gray-400">Entregue</label>
+                      <input type="number" min="0" max={item.quantity} className="block w-full rounded-md border-gray-300 shadow-sm sm:text-sm border p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={item.quantity_delivered || 0} onChange={(e) => updateItem(index, 'quantity_delivered', parseInt(e.target.value))} />
                     </div>
                     <div className="w-24">
                       <label className="text-xs text-gray-500 dark:text-gray-400">R$ Un.</label>
