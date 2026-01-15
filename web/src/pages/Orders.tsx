@@ -334,7 +334,7 @@ export function Orders() {
   }
 
   const formatCurrency = (val: number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val)
-  const formatDate = (dateStr: string) => {
+  const formatDate = (dateStr: string | null) => {
       if (!dateStr) return '-'
       const [year, month, day] = dateStr.split('-')
       return `${day}/${month}/${year}`
