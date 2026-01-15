@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon, MagnifyingGlassIcon, FunnelIcon, CalendarIcon } from '@heroicons/react/24/outline'
 import type { Customer, OrderWithCustomer, Product } from '../types/database'
-import { useAuth } from '../contexts/AuthContext'
+
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
 import { PaymentModal } from '../components/PaymentModal'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -15,7 +15,7 @@ const SCHOOLS = [
 const SIZES = ['2', '4', '6', '8', '10', '12', '14', '16', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG']
 
 export function Orders() {
-  const { isAdmin } = useAuth()
+  // const { isAdmin } = useAuth() // Removed as requested
   const location = useLocation()
   const navigate = useNavigate()
   const [orders, setOrders] = useState<OrderWithCustomer[]>([])
@@ -199,7 +199,7 @@ export function Orders() {
   }
 
   const handleDeleteOrder = async (orderId: string) => {
-    if (!isAdmin) return
+    // Permission check removed as requested
     if (!confirm('Tem certeza que deseja excluir este pedido?')) return
 
     try {
@@ -404,46 +404,64 @@ export function Orders() {
       </div>
 
       {/* Filters & Sorting */}
-      <div className="mt-6 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+      <div className="mt-6 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
            <div className="flex-1">
-                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Buscar Cliente</label>
-                <input 
-                    type="text"
-                    placeholder="Nome do cliente..."
-                    className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                />
+                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Buscar Cliente</label>
+                <div className="relative rounded-md shadow-sm">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <MagnifyingGlassIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                    </div>
+                    <input 
+                        type="text"
+                        placeholder="Nome do cliente..."
+                        className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
+                        value={searchQuery}
+                        onChange={e => setSearchQuery(e.target.value)}
+                    />
+                </div>
            </div>
+           
            <div>
-               <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Filtrar por Escola</label>
-               <select 
-                className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                value={filterSchool}
-                onChange={e => setFilterSchool(e.target.value)}
-               >
-                   <option value="ALL">Todas as Escolas</option>
-                   {SCHOOLS.map(s => <option key={s} value={s}>{s}</option>)}
-               </select>
+               <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Escola</label>
+               <div className="relative rounded-md shadow-sm">
+                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <FunnelIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                   </div>
+                   <select 
+                    className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
+                    value={filterSchool}
+                    onChange={e => setFilterSchool(e.target.value)}
+                   >
+                       <option value="ALL">Todas</option>
+                       {SCHOOLS.map(s => <option key={s} value={s}>{s}</option>)}
+                   </select>
+               </div>
            </div>
+
            <div>
-                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Data Compra</label>
-                <input 
-                    type="date"
-                    className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    value={filterDate}
-                    onChange={e => setFilterDate(e.target.value)}
-                />
+                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Data</label>
+                <div className="relative rounded-md shadow-sm">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                         <CalendarIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                    </div>
+                    <input 
+                        type="date"
+                        className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
+                        value={filterDate}
+                        onChange={e => setFilterDate(e.target.value)}
+                    />
+                </div>
            </div>
+
            <div>
-                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Ordenar</label>
-                <select 
-                    className="block w-full rounded-md border-gray-300 shadow-sm border p-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Ordenar</label>
+                 <select 
+                    className="block w-full rounded-lg border-0 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
                     value={sortBy}
                     onChange={e => setSortBy(e.target.value)}
                     >
-                    <option value="DATE_ASC">Data Pedido (Mais Antigo)</option>
-                    <option value="DATE_DESC">Data Pedido (Mais Recente)</option>
+                    <option value="DATE_ASC">Mais Antigos</option>
+                    <option value="DATE_DESC">Mais Recentes</option>
                     <option value="ALPHA">Cliente (A-Z)</option>
                 </select>
            </div>
@@ -463,7 +481,7 @@ export function Orders() {
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Prazo</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Financeiro</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Entrega</th>
-                    {isAdmin && <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>}
+                    <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
@@ -509,8 +527,7 @@ export function Orders() {
                            <ClipboardDocumentCheckIcon className="h-5 w-5 inline" />
                         </button>
                       </td>
-                      {isAdmin && (
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                            <div className="flex justify-end gap-2">
                                 <button onClick={() => handleEditOrder(order)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300" title="Editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -521,8 +538,7 @@ export function Orders() {
                                     <TrashIcon className="h-5 w-5" />
                                 </button>
                            </div>
-                        </td>
-                      )}
+                      </td>
                     </tr>
                   )})}
                 </tbody>
