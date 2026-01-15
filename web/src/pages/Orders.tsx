@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon, MagnifyingGlassIcon, FunnelIcon, CalendarIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, TrashIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
 import type { Customer, OrderWithCustomer, Product } from '../types/database'
-
+import { useAuth } from '../contexts/AuthContext'
 import { ManageDeliveryModal } from '../components/ManageDeliveryModal'
 import { PaymentModal } from '../components/PaymentModal'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 const SCHOOLS = [
   'Crescimento', 'Babytoom', 'Child Time', 'Maple Bear', 'Diante do Saber', 
@@ -15,21 +14,13 @@ const SCHOOLS = [
 const SIZES = ['2', '4', '6', '8', '10', '12', '14', '16', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG']
 
 export function Orders() {
-  // const { isAdmin } = useAuth() // Removed as requested
-  const location = useLocation()
-  const navigate = useNavigate()
+  const { isAdmin } = useAuth()
   const [orders, setOrders] = useState<OrderWithCustomer[]>([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [customers, setCustomers] = useState<Customer[]>([])
   const [products, setProducts] = useState<Product[]>([])
   
-  // Filtering & Sorting State
-  const [filterSchool, setFilterSchool] = useState('ALL')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [filterDate, setFilterDate] = useState('')
-  const [sortBy, setSortBy] = useState('DATE_ASC')
-
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
   const [selectedOrder, setSelectedOrder] = useState<OrderWithCustomer | null>(null)
@@ -39,7 +30,6 @@ export function Orders() {
   const [selectedOrderForPayment, setSelectedOrderForPayment] = useState<OrderWithCustomer | null>(null)
 
   // Form State
-  const [editingOrderId, setEditingOrderId] = useState<string | null>(null)
   const [selectedCustomer, setSelectedCustomer] = useState('')
   const [school, setSchool] = useState(SCHOOLS[0])
   const [purchaseDate, setPurchaseDate] = useState(new Date().toISOString().split('T')[0])
@@ -47,33 +37,14 @@ export function Orders() {
   const [notes, setNotes] = useState('')
   const [amountPaid, setAmountPaid] = useState('') 
   
-  // Order Items State - Added quantity_delivered to preserve it during updates
-  const [items, setItems] = useState<{product: string, size: string, quantity: number, unitPrice: string, quantity_delivered?: number}[]>([])
+  // Order Items State
+  const [items, setItems] = useState<{product: string, size: string, quantity: number, unitPrice: string}[]>([])
 
   useEffect(() => {
     fetchOrders()
     fetchCustomers()
     fetchProducts()
   }, [])
-
-  // Deep Linking Handler
-  useEffect(() => {
-    if (!loading && orders.length > 0 && location.state?.focusOrderId) {
-        const { focusOrderId, action } = location.state
-        const targetOrder = orders.find(o => o.id === focusOrderId)
-        
-        if (targetOrder) {
-            if (action === 'edit') {
-                handleEditOrder(targetOrder)
-            } else if (action === 'delivery') {
-                setSelectedOrder(targetOrder)
-                setDeliveryModalOpen(true)
-            }
-            // Clear state to avoid reopening on refresh
-            navigate(location.pathname, { replace: true })
-        }
-    }
-  }, [loading, orders, location.state, navigate])
 
   const fetchOrders = async () => {
     try {
@@ -112,8 +83,7 @@ export function Orders() {
         product: firstProduct ? firstProduct.name : '', 
         size: SIZES[0], 
         quantity: 1, 
-        unitPrice: firstProduct ? (firstProduct.price || 0).toString() : '0',
-        quantity_delivered: 0
+        unitPrice: firstProduct ? (firstProduct.price || 0).toString() : '0' 
     }])
   }
 
@@ -199,7 +169,7 @@ export function Orders() {
   }
 
   const handleDeleteOrder = async (orderId: string) => {
-    // Permission check removed as requested
+    if (!isAdmin) return
     if (!confirm('Tem certeza que deseja excluir este pedido?')) return
 
     try {
@@ -212,32 +182,7 @@ export function Orders() {
     }
   }
 
-  const handleEditOrder = (order: OrderWithCustomer) => {
-    setEditingOrderId(order.id)
-    setSelectedCustomer(order.customer_id)
-    setSchool(order.school || SCHOOLS[0])
-    setPurchaseDate(order.purchase_date || new Date().toISOString().split('T')[0])
-    setDueDate(order.due_date || '')
-    setNotes(order.notes || '')
-    setAmountPaid(order.amount_paid?.toString() || '')
-
-    // Populate items
-    if (order.items) {
-        setItems(order.items.map(i => ({
-            product: i.product_name,
-            size: i.size,
-            quantity: i.quantity,
-            unitPrice: i.unit_price.toString(),
-            quantity_delivered: i.quantity_delivered // Preserve this!
-        })))
-    } else {
-        setItems([])
-    }
-
-    setIsModalOpen(true)
-  }
-
-  const handleSaveOrder = async (e: React.FormEvent) => {
+  const handleCreateOrder = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!selectedCustomer) {
       alert('Selecione um cliente')
@@ -247,68 +192,37 @@ export function Orders() {
     try {
       const totalAmount = calculateTotal()
       const paid = parseFloat(amountPaid) || 0
-      const paymentStatus = paid >= totalAmount ? 'Pago Total' : `Parcial`
 
-      let orderId = editingOrderId
+      // 1. Create Order
+      const { data: orderData, error: orderError } = await supabase
+        .from('orders')
+        .insert([{
+          customer_id: selectedCustomer,
+          school,
+          purchase_date: purchaseDate,
+          due_date: dueDate || null,
+          payment_status: paid >= totalAmount ? 'Pago Total' : `Parcial`,
+          delivery_status: 'pending',
+          notes,
+          total_amount: totalAmount,
+          amount_paid: paid
+        }])
+        .select()
+        .single()
 
-      if (editingOrderId) {
-          // UPDATE EXISTING ORDER
-          const { error: updateError } = await supabase
-            .from('orders')
-            .update({
-                customer_id: selectedCustomer,
-                school,
-                purchase_date: purchaseDate,
-                due_date: dueDate || null,
-                payment_status: paymentStatus,
-                notes,
-                total_amount: totalAmount,
-                amount_paid: paid
-            })
-            .eq('id', editingOrderId)
-        
-          if (updateError) throw updateError
+      if (orderError) throw orderError
 
-          // For items, easiest strategy is delete all and re-create
-          // But we want to try to preserve quantity_delivered if possible.
-          // Since we are preserving it in the state `items`, we can just re-insert with that value.
-          
-          const { error: deleteItemsError } = await supabase.from('order_items').delete().eq('order_id', editingOrderId)
-          if (deleteItemsError) throw deleteItemsError
-
-      } else {
-          // CREATE NEW ORDER
-          const { data: orderData, error: orderError } = await supabase
-            .from('orders')
-            .insert([{
-              customer_id: selectedCustomer,
-              school,
-              purchase_date: purchaseDate,
-              due_date: dueDate || null,
-              payment_status: paymentStatus,
-              delivery_status: 'pending',
-              notes,
-              total_amount: totalAmount,
-              amount_paid: paid
-            }])
-            .select()
-            .single()
-
-          if (orderError) throw orderError
-          orderId = orderData.id
-      }
-
-      // 2. Insert Items (for both Create and Update flows)
-      if (items.length > 0 && orderId) {
+      // 2. Create Items
+      if (items.length > 0) {
         const { error: itemsError } = await supabase
           .from('order_items')
           .insert(items.map(item => ({
-            order_id: orderId,
+            order_id: orderData.id,
             product_name: item.product,
             size: item.size,
             quantity: item.quantity,
             unit_price: parseFloat(item.unitPrice) || 0,
-            quantity_delivered: item.quantity_delivered || 0
+            quantity_delivered: 0
           })))
         
         if (itemsError) throw itemsError
@@ -318,27 +232,20 @@ export function Orders() {
       resetForm()
       fetchOrders()
     } catch (error) {
-      alert('Erro ao salvar pedido')
+      alert('Erro ao criar pedido')
       console.error(error)
     }
   }
 
   const resetForm = () => {
-    setEditingOrderId(null)
     setSelectedCustomer('')
     setItems([])
     setAmountPaid('')
     setNotes('')
     setDueDate('')
-    setPurchaseDate(new Date().toISOString().split('T')[0])
   }
 
   const formatCurrency = (val: number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val)
-  const formatDate = (dateStr: string | null) => {
-      if (!dateStr) return '-'
-      const [year, month, day] = dateStr.split('-')
-      return `${day}/${month}/${year}`
-  }
 
   const getDeadlineStatus = (dateStr: string | null) => {
     if (!dateStr) return null
@@ -351,7 +258,7 @@ export function Orders() {
 
     if (diffDays < 0) return { color: 'text-red-600 font-bold', label: `Atrasado (${Math.abs(diffDays)}d)` }
     if (diffDays <= 3) return { color: 'text-yellow-600 font-bold', label: `Prazo Próximo (${diffDays}d)` }
-    return { color: 'text-green-600', label: formatDate(dateStr) }
+    return { color: 'text-green-600', label: new Date(dateStr).toLocaleDateString() }
   }
 
   const getDeliverySummary = (order: OrderWithCustomer) => {
@@ -362,25 +269,6 @@ export function Orders() {
     if (deliveredItems >= totalItems) return { label: 'Entregue', color: 'bg-green-100 text-green-800' }
     return { label: `Parcial (${deliveredItems}/${totalItems})`, color: 'bg-yellow-100 text-yellow-800' }
   }
-
-  // Filter Logic
-  const filteredOrders = orders
-    .filter(order => {
-        if (filterSchool !== 'ALL' && order.school !== filterSchool) return false
-        if (filterDate && order.purchase_date !== filterDate) return false
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase()
-            const customerName = order.customer?.name?.toLowerCase() || ''
-            if (!customerName.includes(query)) return false
-        }
-        return true
-    })
-    .sort((a, b) => {
-        if (sortBy === 'DATE_DESC') return new Date(b.purchase_date || 0).getTime() - new Date(a.purchase_date || 0).getTime()
-        if (sortBy === 'DATE_ASC') return new Date(a.purchase_date || 0).getTime() - new Date(b.purchase_date || 0).getTime()
-        if (sortBy === 'ALPHA') return (a.customer?.name || '').localeCompare(b.customer?.name || '')
-        return 0
-    })
 
   return (
     <div>
@@ -394,7 +282,7 @@ export function Orders() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
             type="button"
-            onClick={() => { resetForm(); setIsModalOpen(true); }}
+            onClick={() => setIsModalOpen(true)}
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <PlusIcon className="h-5 w-5 inline-block mr-1" />
@@ -403,72 +291,8 @@ export function Orders() {
         </div>
       </div>
 
-      {/* Filters & Sorting */}
-      <div className="mt-6 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-           <div className="flex-1">
-                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Buscar Cliente</label>
-                <div className="relative rounded-md shadow-sm">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <MagnifyingGlassIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                    </div>
-                    <input 
-                        type="text"
-                        placeholder="Nome do cliente..."
-                        className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
-                </div>
-           </div>
-           
-           <div>
-               <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Escola</label>
-               <div className="relative rounded-md shadow-sm">
-                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <FunnelIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                   </div>
-                   <select 
-                    className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
-                    value={filterSchool}
-                    onChange={e => setFilterSchool(e.target.value)}
-                   >
-                       <option value="ALL">Todas</option>
-                       {SCHOOLS.map(s => <option key={s} value={s}>{s}</option>)}
-                   </select>
-               </div>
-           </div>
-
-           <div>
-                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Data</label>
-                <div className="relative rounded-md shadow-sm">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                         <CalendarIcon className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                    </div>
-                    <input 
-                        type="date"
-                        className="block w-full rounded-lg border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
-                        value={filterDate}
-                        onChange={e => setFilterDate(e.target.value)}
-                    />
-                </div>
-           </div>
-
-           <div>
-                <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1 uppercase tracking-wider">Ordenar</label>
-                 <select 
-                    className="block w-full rounded-lg border-0 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:ring-gray-600 dark:text-white"
-                    value={sortBy}
-                    onChange={e => setSortBy(e.target.value)}
-                    >
-                    <option value="DATE_ASC">Mais Antigos</option>
-                    <option value="DATE_DESC">Mais Recentes</option>
-                    <option value="ALPHA">Cliente (A-Z)</option>
-                </select>
-           </div>
-      </div>
-
       {/* Orders List */}
-      <div className="mt-4 flow-root">
+      <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
@@ -477,17 +301,16 @@ export function Orders() {
                   <tr>
                     <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Cliente</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Escola</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Data Pedido</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Prazo</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Financeiro</th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Entrega</th>
-                    <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>
+                    {isAdmin && <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
                   {loading ? (
-                    <tr><td colSpan={7} className="text-center py-4 dark:text-gray-400">Carregando...</td></tr>
-                  ) : filteredOrders.map((order) => {
+                    <tr><td colSpan={6} className="text-center py-4 dark:text-gray-400">Carregando...</td></tr>
+                  ) : orders.map((order) => {
                      const total = order.total_amount || 0
                      const paid = order.amount_paid || 0
                      const remaining = total - paid
@@ -498,7 +321,6 @@ export function Orders() {
                     <tr key={order.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-white">{order.customer?.name}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{order.school}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">{formatDate(order.purchase_date)}</td>
                       <td className={`whitespace-nowrap px-3 py-4 text-sm ${deadline?.color || 'text-gray-500 dark:text-gray-400'}`}>
                         {deadline?.label || '-'}
                       </td>
@@ -527,18 +349,13 @@ export function Orders() {
                            <ClipboardDocumentCheckIcon className="h-5 w-5 inline" />
                         </button>
                       </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                           <div className="flex justify-end gap-2">
-                                <button onClick={() => handleEditOrder(order)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300" title="Editar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                    </svg>
-                                </button>
-                                <button onClick={() => handleDeleteOrder(order.id)} className="text-red-600 hover:text-red-900" title="Excluir">
-                                    <TrashIcon className="h-5 w-5" />
-                                </button>
-                           </div>
-                      </td>
+                      {isAdmin && (
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <button onClick={() => handleDeleteOrder(order.id)} className="text-red-600 hover:text-red-900">
+                            <TrashIcon className="h-5 w-5" />
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   )})}
                 </tbody>
@@ -548,14 +365,12 @@ export function Orders() {
         </div>
       </div>
 
-       {/* Create/Edit Modal */}
+       {/* Create Modal */}
        {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 overflow-y-auto">
           <div className="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl my-8">
-            <h2 className="text-lg font-semibold mb-4 dark:text-white">
-                {editingOrderId ? 'Editar Pedido' : 'Novo Pedido'}
-            </h2>
-            <form onSubmit={handleSaveOrder} className="space-y-4">
+            <h2 className="text-lg font-semibold mb-4 dark:text-white">Novo Pedido</h2>
+            <form onSubmit={handleCreateOrder} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Cliente</label>
@@ -642,9 +457,7 @@ export function Orders() {
 
               <div className="flex justify-end gap-2 mt-6">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Cancelar</button>
-                <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">
-                    {editingOrderId ? 'Salvar Alterações' : 'Criar Pedido'}
-                </button>
+                <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">Salvar Pedido</button>
               </div>
             </form>
           </div>
