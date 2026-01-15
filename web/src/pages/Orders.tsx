@@ -25,7 +25,13 @@ export function Orders() {
   const [searchQuery, setSearchQuery] = useState('')
   const [filterSchool, setFilterSchool] = useState('ALL')
   const [filterDate, setFilterDate] = useState('')
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
+  
+  // Sort State
+  type SortKey = 'customer' | 'school' | 'purchase_date' | 'due_date' | 'total_amount' | 'delivery_status'
+  const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: 'asc' | 'desc' }>({ 
+      key: 'purchase_date', 
+      direction: 'desc' 
+  })
 
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
@@ -301,7 +307,16 @@ export function Orders() {
     return { label: `Parcial (${deliveredItems}/${totalItems})`, color: 'bg-yellow-100 text-yellow-800' }
   }
   
-  // Filter Logic
+  // Sorting Helper
+  const requestSort = (key: SortKey) => {
+      let direction: 'asc' | 'desc' = 'asc';
+      if (sortConfig.key === key && sortConfig.direction === 'asc') {
+          direction = 'desc';
+      }
+      setSortConfig({ key, direction });
+  }
+
+  // Filter & Sort Logic
   const filteredOrders = orders.filter(order => {
       if (searchQuery) {
           const query = searchQuery.toLowerCase()
@@ -313,10 +328,47 @@ export function Orders() {
       }
       return true
   }).sort((a, b) => {
-      const dateA = new Date(a.purchase_date || 0).getTime()
-      const dateB = new Date(b.purchase_date || 0).getTime()
-      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA
+      const getVal = (o: OrderWithCustomer) => {
+          switch(sortConfig.key) {
+              case 'customer': return o.customer?.name || ''
+              case 'school': return o.school || ''
+              case 'purchase_date': return new Date(o.purchase_date || 0).getTime()
+              case 'due_date': return new Date(o.due_date || 0).getTime()
+              case 'total_amount': return o.total_amount || 0
+              case 'delivery_status': return getDeliverySummary(o).label
+              default: return 0
+          }
+      }
+
+      const valA = getVal(a)
+      const valB = getVal(b)
+      
+      if (typeof valA === 'string' && typeof valB === 'string') {
+          return sortConfig.direction === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA)
+      }
+      
+      return sortConfig.direction === 'asc' 
+        ? (valA as number) - (valB as number) 
+        : (valB as number) - (valA as number)
   })
+
+  // Sort Icon
+  const SortIcon = ({ colKey }: { colKey: SortKey }) => {
+      if (sortConfig.key !== colKey) return <span className="opacity-0 group-hover:opacity-30 ml-2">↕</span>
+      return <span className="ml-2">{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>
+  }
+
+  const Th = ({ label, sortKey, className = '' }: { label: string, sortKey?: SortKey, className?: string }) => (
+      <th 
+          className={`py-3.5 px-3 text-left text-sm font-semibold text-gray-900 dark:text-white ${sortKey ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 select-none group' : ''} ${className}`}
+          onClick={() => sortKey && requestSort(sortKey)}
+      >
+          <div className="flex items-center">
+              {label}
+              {sortKey && <SortIcon colKey={sortKey} />}
+          </div>
+      </th>
+  )
 
   return (
     <div>
@@ -340,7 +392,7 @@ export function Orders() {
       </div>
       
       {/* Filters Bar */}
-      <div className="mt-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div className="mt-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Search */}
           <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -382,18 +434,6 @@ export function Orders() {
                   onChange={(e) => setFilterDate(e.target.value)}
               />
           </div>
-
-          {/* Sort Order */}
-          <div className="relative">
-              <select
-                  className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:text-white dark:ring-gray-600"
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
-              >
-                  <option value="desc">Mais Recentes</option>
-                  <option value="asc">Mais Antigos</option>
-              </select>
-          </div>
       </div>
 
       {/* Orders List */}
@@ -404,12 +444,12 @@ export function Orders() {
               <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
-                    <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Cliente</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Escola</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Data Compra</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Prazo</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Financeiro</th>
-                    <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Entrega</th>
+                    <Th label="Cliente" sortKey="customer" className="pl-4 pr-3" />
+                    <Th label="Escola" sortKey="school" />
+                    <Th label="Data Compra" sortKey="purchase_date" />
+                    <Th label="Prazo" sortKey="due_date" />
+                    <Th label="Financeiro" sortKey="total_amount" />
+                    <Th label="Entrega" sortKey="delivery_status" />
                     <th className="relative py-3.5 pl-3 pr-4 sm:pr-6"><span className="sr-only">Ações</span></th>
                   </tr>
                 </thead>
