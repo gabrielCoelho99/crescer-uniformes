@@ -25,6 +25,7 @@ export function Orders() {
   const [searchQuery, setSearchQuery] = useState('')
   const [filterSchool, setFilterSchool] = useState('ALL')
   const [filterDate, setFilterDate] = useState('')
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
 
   // Delivery Modal State
   const [deliveryModalOpen, setDeliveryModalOpen] = useState(false)
@@ -204,13 +205,6 @@ export function Orders() {
           unitPrice: i.unit_price.toString()
       }))
       setItems(loadedItems)
-      
-      // We need a way to track we are editing, but for now user just wants access. 
-      // Re-using create modal logic for simplicity or just alerting.
-      // Wait, the original code didn't have full edit logic in the modal, just "Delete".
-      // I will implement "Delete" access first as per previous success.
-      // Full editing might be complex if the modal doesn't support 'update' mode yet.
-      // For this step I'll stick to unlocking Delete and polishing the list.
   }
 
   const handleCreateOrder = async (e: React.FormEvent) => {
@@ -318,6 +312,10 @@ export function Orders() {
           if (order.purchase_date !== filterDate) return false
       }
       return true
+  }).sort((a, b) => {
+      const dateA = new Date(a.purchase_date || 0).getTime()
+      const dateB = new Date(b.purchase_date || 0).getTime()
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA
   })
 
   return (
@@ -342,7 +340,7 @@ export function Orders() {
       </div>
       
       {/* Filters Bar */}
-      <div className="mt-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="mt-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-4 gap-4">
           {/* Search */}
           <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -383,6 +381,18 @@ export function Orders() {
                   value={filterDate}
                   onChange={(e) => setFilterDate(e.target.value)}
               />
+          </div>
+
+          {/* Sort Order */}
+          <div className="relative">
+              <select
+                  className="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:text-white dark:ring-gray-600"
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
+              >
+                  <option value="desc">Mais Recentes</option>
+                  <option value="asc">Mais Antigos</option>
+              </select>
           </div>
       </div>
 
